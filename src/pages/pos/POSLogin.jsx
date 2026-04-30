@@ -39,14 +39,22 @@ const POSLogin = () => {
   const handleGoogleLogin = async () => {
     setError('');
     setLoading(true);
+    console.log('[POSLogin] Google button clicked');
     try {
-      console.log('[Auth] Google button clicked');
-      alert('Redirecting to Google... Please wait.');
-      await loginWithGoogle();
+      if (typeof loginWithGoogle !== 'function') {
+        throw new Error('Critical Error: loginWithGoogle function is missing from the system controller.');
+      }
+      
+      const user = await loginWithGoogle();
+      if (user) {
+        alert('Success! Authenticated as: ' + user.email);
+      } else {
+        console.warn('[POSLogin] Google login returned no user');
+      }
     } catch (err) {
-      console.error('[Auth] Google sign-in failed:', err);
-      setError('Google Sign-in failed: ' + err.message);
-      alert('Google Error: ' + err.message);
+      console.error('[POSLogin] Google Login Error:', err);
+      setError('System Error: ' + (err.message || 'Unknown error'));
+      alert('SYSTEM ERROR: ' + err.message);
       setLoading(false);
     }
   };

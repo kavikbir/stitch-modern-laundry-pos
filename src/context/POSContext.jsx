@@ -30,22 +30,23 @@ const PAGE_SIZE = 10;
 
 export const POSProvider = ({ children }) => {
   const [currentCustomer, setCurrentCustomer] = useState(null);
-  const [currentAdmin,    setCurrentAdmin]    = useState(null);
-  const [userRole,        setUserRole]        = useState(null);
-  const [authLoading,     setAuthLoading]     = useState(true);
-  const [orders,          setOrders]          = useState([]);
-  const [customers,       setCustomers]       = useState([]);
-  const [notifications,   setNotifications]   = useState([]);
-  const [settings,        setSettings]        = useState({    business_name: 'Stitch Modern Laundry',
+  const [currentAdmin, setCurrentAdmin] = useState(null);
+  const [userRole, setUserRole] = useState(null);
+  const [authLoading, setAuthLoading] = useState(true);
+  const [orders, setOrders] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [notifications, setNotifications] = useState([]);
+  const [settings, setSettings] = useState({
+    business_name: 'Stitch Modern Laundry',
     currency: '₹',
     tax_rate: 0,
     min_order: 100,
   });
-  const [ordersPage,      setOrdersPage]      = useState(1);
-  const [ordersTotal,     setOrdersTotal]     = useState(0);
-  const [customersPage,   setCustomersPage]   = useState(1);
-  const [customersTotal,  setCustomersTotal]  = useState(0);
-  const [dashboardStats,  setDashboardStats]  = useState(null);
+  const [ordersPage, setOrdersPage] = useState(1);
+  const [ordersTotal, setOrdersTotal] = useState(0);
+  const [customersPage, setCustomersPage] = useState(1);
+  const [customersTotal, setCustomersTotal] = useState(0);
+  const [dashboardStats, setDashboardStats] = useState(null);
   const [notificationBell, setNotificationBell] = useState([]);
 
   const dashboardCacheRef = useRef({ data: null, lastFetched: 0 });
@@ -170,7 +171,7 @@ export const POSProvider = ({ children }) => {
       email: email,
       role: 'customer'
     });
-    await sendEmailVerification(user).catch(() => {}); // best-effort
+    await sendEmailVerification(user).catch(() => { }); // best-effort
     return user;
   };
 
@@ -217,7 +218,7 @@ export const POSProvider = ({ children }) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
       clearLoginAttempts(email);
-      await Logger.login(email).catch(() => {});
+      await Logger.login(email).catch(() => { });
       return user;
     } catch (err) {
       recordFailedLogin(email);
@@ -232,7 +233,7 @@ export const POSProvider = ({ children }) => {
   };
 
   const logoutAdmin = async () => {
-    await Logger.logout().catch(() => {});
+    await Logger.logout().catch(() => { });
     cleanupSubscriptions();
     await signOut(auth);
   };
@@ -286,7 +287,7 @@ export const POSProvider = ({ children }) => {
       .select('*')
       .eq('customer_id', userId)
       .order('created_at', { ascending: false });
-    
+
     if (!error && data) {
       setOrders(data);
     }
@@ -310,7 +311,7 @@ export const POSProvider = ({ children }) => {
   const createOrder = async (orderData) => {
     const limit = await checkOrderCreationLimit(orderData.customer_id);
     if (!limit.allowed) throw new Error(limit.reason);
-    
+
     // Default status should be enum compliant
     const finalData = {
       ...orderData,
@@ -325,7 +326,7 @@ export const POSProvider = ({ children }) => {
   const fetchCustomersPage = useCallback(async (page = 1, search = '') => {
     let query = supabase.from('customers').select('*', { count: 'exact' });
     if (search) query = query.or(`name.ilike.%${search}%,email.ilike.%${search}%`);
-    const { data, error, count } = await query.range((page-1)*PAGE_SIZE, page*PAGE_SIZE-1).order('created_at', { ascending: false });
+    const { data, error, count } = await query.range((page - 1) * PAGE_SIZE, page * PAGE_SIZE - 1).order('created_at', { ascending: false });
     if (!error) { setCustomers(data || []); setCustomersTotal(count || 0); setCustomersPage(page); }
   }, []);
 
