@@ -83,10 +83,12 @@ export const POSProvider = ({ children }) => {
         const result = await getRedirectResult(auth);
         if (result?.user) {
           console.log('[Auth] Redirect successful:', result.user.email);
+          alert('Welcome back, ' + result.user.email);
         }
       } catch (err) {
         if (err.code !== 'auth/redirect-cancelled-by-user') {
           console.error('[Auth] Redirect error:', err);
+          alert('Redirect Error: ' + err.message);
         }
       }
     };
@@ -211,9 +213,11 @@ export const POSProvider = ({ children }) => {
   /** Google Sign-In — uses Redirect (More reliable on mobile/strict browsers) */
   const loginWithGoogle = async () => {
     try {
+      console.log('[Auth] Attempting Google Redirect...');
       await signInWithRedirect(auth, googleProvider);
     } catch (err) {
       console.error('[Auth] Google Login Error:', err);
+      alert('Login Error: ' + err.message);
       throw err;
     }
   };
