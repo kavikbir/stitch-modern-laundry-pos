@@ -3,12 +3,15 @@ import { usePOS } from '../../context/POSContext';
 import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
-  const { stats, orders, fetchOrdersPage, fetchDashboardStats, settings } = usePOS();
+  const { dashboardStats, orders, fetchOrdersPage, fetchDashboardStats, settings } = usePOS();
 
   React.useEffect(() => {
     fetchDashboardStats();
     fetchOrdersPage(1);
   }, [fetchDashboardStats, fetchOrdersPage]);
+
+  // Use dashboardStats instead of stats
+  const stats = dashboardStats;
 
   if (!stats) {
     return (
