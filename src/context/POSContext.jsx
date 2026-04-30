@@ -92,7 +92,7 @@ export const POSProvider = ({ children }) => {
           name: profile?.name || user.displayName || user.email?.split('@')[0] || 'New User',
           email: user.email || '',
           role: isWhitelisted ? 'admin' : (profile?.role || 'customer'),
-          is_verified: user.emailVerified || isWhitelisted,
+          is_verified: user.emailVerified || isWhitelisted || user.providerData.some(p => p.providerId === 'google.com'),
           is_active: true,
           is_deleted: false,
         };

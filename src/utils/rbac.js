@@ -96,7 +96,9 @@ export function isWhitelistedAdmin(email) {
 export async function isEmailVerified() {
   const user = auth.currentUser;
   if (!user) return false;
-  return !!user.emailVerified;
+  // Google users are pre-verified
+  const isSocial = user.providerData.some(p => p.providerId === 'google.com');
+  return !!user.emailVerified || isSocial;
 }
 
 // ─── React Route Guard Hook ───────────────────────────────
