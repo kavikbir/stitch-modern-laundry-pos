@@ -159,9 +159,9 @@ const Account = () => {
     pw.document.close();
   };
 
-  // Google users are pre-verified. Check for providerData if available.
-  const isSocial = currentCustomer.providerData?.some(p => p.providerId === 'google.com');
-  const isUnverified = !currentCustomer.is_verified && !isSocial;
+  // Trust the central is_verified flag from the context/DB
+  const isUnverified = !currentCustomer.is_verified;
+  console.log('[Account] User status:', { email: currentCustomer.email, verified: currentCustomer.is_verified });
 
   return (
     <div className="pt-32 pb-24 px-8 md:px-16 min-h-screen bg-[#fafafc]">
