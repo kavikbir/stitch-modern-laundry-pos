@@ -62,7 +62,6 @@ export const POSProvider = ({ children }) => {
   const dashboardCacheRef = useRef({ data: null, lastFetched: 0 });
   const channelsRef = useRef([]);
 
-  // ─────────────────────────────────────────────────────────
   // SECTION: FIREBASE AUTH LISTENER
   // ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -73,6 +72,23 @@ export const POSProvider = ({ children }) => {
       unsubscribe();
       cleanupSubscriptions();
     };
+  }, []);
+  
+  // SECTION: GOOGLE REDIRECT HANDLER
+  useEffect(() => {
+    const handleRedirect = async () => {
+      try {
+        const result = await getRedirectResult(auth);
+        if (result?.user) {
+          console.log('[Auth] Redirect successful:', result.user.email);
+        }
+      } catch (err) {
+        if (err.code !== 'auth/redirect-cancelled-by-user') {
+          console.error('[Auth] Redirect error:', err);
+        }
+      }
+    };
+    handleRedirect();
   }, []);
 
   async function handleAuthChange(user) {
@@ -190,10 +206,14 @@ export const POSProvider = ({ children }) => {
     return user;
   };
 
-  /** Google Sign-In — uses popup (works in all environments) */
+  /** Google Sign-In — uses Redirect (More reliable on mobile/strict browsers) */
   const loginWithGoogle = async () => {
-    const { user } = await signInWithPopup(auth, googleProvider);
-    return user;
+    try {
+      await signInWithRedirect(auth, googleProvider);
+    } catch (err) {
+      console.error('[Auth] Google Login Error:', err);
+      throw err;
+    }
   };
 
   /** Phone OTP — Step 1: Send OTP */
