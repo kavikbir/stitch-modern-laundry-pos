@@ -107,6 +107,7 @@ export const POSProvider = ({ children }) => {
 
     try {
       const isWhitelisted = isWhitelistedAdmin(user.email);
+      console.log('[Auth] User:', user.email, 'Admin Status:', isWhitelisted);
 
       // 1. Fetch or create profile in Supabase using maybeSingle to avoid 406 on missing rows
       let { data: profile } = await supabase
@@ -134,17 +135,11 @@ export const POSProvider = ({ children }) => {
           .maybeSingle();
 
         if (syncErr) {
-          console.error('[Auth] Supabase sync error:', syncErr.message, syncErr.details);
-          // Use a local fallback so the app still works
-          profile = profile || {
-            id: user.uid,
-            name: user.displayName || user.email,
-            email: user.email,
-            role: isWhitelisted ? 'admin' : 'customer',
-            is_verified: user.emailVerified || isWhitelisted,
-          };
+          console.error('[Auth] Supabase sync failed, using fallback:', syncErr.message);
+          // If DB sync fails (e.g. RLS), we STILL allow the admin to proceed
+          profile = { ...userData, role: isWhitelisted ? 'admin' : 'customer' };
         } else {
-          profile = synced;
+          profile = synced || userData;
         }
       }
 
