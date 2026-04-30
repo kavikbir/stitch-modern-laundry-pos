@@ -174,6 +174,14 @@ export const POSProvider = ({ children }) => {
     return user;
   };
 
+  /** Send/Resend verification email */
+  const resendVerificationEmail = async () => {
+    if (auth.currentUser) {
+      await sendEmailVerification(auth.currentUser);
+      alert('Verification email sent! Please check your inbox (and spam folder).');
+    }
+  };
+
   /** Google Sign-In — uses Popup */
   const loginWithGoogle = async () => {
     try {
@@ -359,6 +367,7 @@ export const POSProvider = ({ children }) => {
     loginCustomerEmail,
     registerCustomer,
     loginWithGoogle,
+    resendVerificationEmail,
     loginWithPhone,
     verifyOtp,
     loginAdmin,

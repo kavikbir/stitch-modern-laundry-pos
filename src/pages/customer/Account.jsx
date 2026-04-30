@@ -4,7 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { supabase } from '../../supabase';
 
 const Account = () => {
-  const { currentCustomer, logoutCustomer, orders, settings, fetchCustomerOrders } = usePOS();
+  const { currentCustomer, logoutCustomer, orders, settings, fetchCustomerOrders, resendVerificationEmail } = usePOS();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,12 +28,11 @@ const Account = () => {
   };
 
   const handleResendEmail = async () => {
-    const { error } = await supabase.auth.resend({
-      type: 'signup',
-      email: currentCustomer.email,
-    });
-    if (error) alert('Error: ' + error.message);
-    else alert('Verification email resent! Please check your inbox.');
+    try {
+      await resendVerificationEmail();
+    } catch (err) {
+      alert('Error: ' + err.message);
+    }
   };
 
   const renderTimeline = (order) => {
