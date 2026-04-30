@@ -81,7 +81,7 @@ export function isAdmin(role) {
 // ─── Admin Email Whitelist ────────────────────────────────
 // Add your authorized admin emails here
 const ADMIN_WHITELIST = [
-  'ucss.kritagya@gmail.com',
+  'ucss.kriatgya@gmail.com',
 ];
 
 export function isWhitelistedAdmin(email) {
