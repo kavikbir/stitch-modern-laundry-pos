@@ -1,0 +1,81 @@
+=========================================================
+   STITCH MODERN LAUNDRY - COMPLETE SYSTEM ARCHITECTURE
+=========================================================
+   Version: 2.0 (Premium Hybrid Edition)
+   Last Updated: April 2026
+   Architecture: Firebase Auth + Supabase Real-time DB
+=========================================================
+
+1. TECHNOLOGY & PRODUCT STACK
+---------------------------------------------------------
+CORE ENGINE:
+- Frontend: React 19 (Vite) - Ultra-fast, modern UI experience.
+- Authentication: Firebase Auth - Enterprise-grade security for Google, Email, and Phone OTP.
+- Database: Supabase (PostgreSQL) - Persistent, real-time data storage with millisecond sync.
+- Styling: Vanilla CSS + Tailwind - Premium, custom-crafted aesthetics.
+
+ADVANTAGES OF OUR SYSTEM:
+- Hybrid Security: Combines Firebase's world-class identity management with Supabase's powerful data rules.
+- Real-Time Journey: Customers see their order progress "live" without ever refreshing the page.
+- Premium Aesthetics: High-end "Service Journey" timelines and vertical trackers that wow users.
+- Business Ready: Includes professional Tax Invoice/Bill generation and itemized tracking.
+- Zero Data Loss: 100% permanent storage on cloud servers—business data never "starts from zero."
+
+2. THE "PREMIUM SERVICE JOURNEY" (8-STAGE WORKFLOW)
+---------------------------------------------------------
+Every order follows a meticulously tracked 8-stage process:
+1. Order Confirmed: Customer booking is received and validated.
+2. Picked Up: Clothes are collected from the customer's doorstep.
+3. In Cleaning: Items are in the washing, dry-cleaning, or sorting phase.
+4. Final Finishing: Professional pressing, ironing, and folding.
+5. Final Inspection: Expert quality check to ensure perfection.
+6. Ready for Dispatch: Packed, invoiced, and waiting for delivery.
+7. Out for Delivery: The driver is on the way to the customer.
+8. Completed & Delivered: Final handoff and transaction complete.
+
+3. CUSTOMER WORKFLOW
+---------------------------------------------------------
+STEP 1: SECURE AUTHENTICATION
+- Customer signs up via Google (Instant), Phone (OTP), or Email.
+- Identity is verified via Firebase; a matching profile is created in Supabase.
+
+STEP 2: EASY BOOKING
+- User selects services (Wash, Iron, Dry Clean), quantity, and fabric.
+- Real-time price calculation ensures transparency.
+- Pickup address and time-window are scheduled.
+
+STEP 3: LIVE TRACKING (The "Journey")
+- Customer sees a beautiful vertical timeline on their "My Account" page.
+- Current stage pulses with a live indicator.
+- Completed stages show exact time-stamps of processing.
+
+STEP 4: SELF-SERVICE INVOICING
+- Customer can print their own professional Tax Invoice directly from their account.
+
+4. ADMIN / POS WORKFLOW
+---------------------------------------------------------
+STEP 1: REAL-TIME DASHBOARD
+- Admin sees "Live" stats: Today's Revenue, Active Orders, and New Customers.
+- New orders pop up instantly without page reloads.
+
+STEP 2: ORDER MANAGEMENT
+- Admin opens an order to see full itemized lists and customer contact details.
+- "Advance Journey" button: Moves the order through the 8 stages with one click.
+- "Record Payment": Handles Cash, Card, or UPI transactions securely.
+
+STEP 3: BUSINESS OPERATIONS
+- Print Professional Bill: Generates high-end receipts with business branding.
+- Customer CRM: Full history and profile management for every client.
+- Global Settings: Control business name, currency, and service tax rates.
+
+5. DATA & SECURITY INFRASTRUCTURE
+---------------------------------------------------------
+- Environment Variables (.env): All API keys are hidden in a private file.
+- .env.example: A safe template for project sharing without exposing secrets.
+- Real-time Replication: Enabled for 'orders', 'customers', and 'logs' tables.
+- CHECK Constraints: Database-level rules ensure only valid statuses are saved.
+- Optimistic UI: The app updates instantly on click, then saves to DB in the background.
+
+=========================================================
+DOCUMENTATION END - STITCH MODERN LAUNDRY SYSTEM v2.0
+=========================================================

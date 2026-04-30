@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5f5e60",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "background": "#f8f9fa",
+                        "outline-variant": "#d9dadb",
+                        "inverse-surface": "#2f3131",
+                        "on-surface-variant": "#414753",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#004b6b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface": "#1a1c1c",
+                        "outline": "#727784",
+                        "primary-fixed-dim": "#87CEEB",
+                        "inverse-primary": "#87CEEB",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-tertiary-container": "#e8e8ea",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary-container": "#636264",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "surface-dim": "#d9dadb",
+                        "surface": "#f8f9fa",
+                        "secondary-fixed": "#e4e2e4",
+                        "surface-tint": "#87CEEB",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed": "#c7ebf9",
+                        "tertiary-fixed": "#e2e2e4",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "tertiary": "#4e5052",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "tertiary-container": "#67686a",
+                        "primary": "#87CEEB",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "on-primary-container": "#001e2c",
+                        "on-primary-fixed": "#001e2c",
+                        "on-primary": "#00354a",
+                        "surface-container-low": "#f3f4f5",
+                        "on-secondary-fixed-variant": "#474649",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e2dfe1",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#87CEEB",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "8px",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "12px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "touch-target-min": "44px",
+                        "safe-area": "20px",
+                        "tile-gap": "1px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Manrope", "sans-serif"],
+                        "headline-lg": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "headline-md": ["Manrope"],
+                        "headline-xl": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-bold": ["Manrope"],
+                        "label-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-xl": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-lg": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "13px", "letterSpacing": "0.04em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; -webkit-font-smoothing: antialiased; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .glass-scrim { background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.4) 100%); }
+        .hairline-b { border-bottom: 0.5px solid #E5E5E7; }
+        .hairline-t { border-top: 0.5px solid #E5E5E7; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface-container-low text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full px-4 h-14">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-zinc-900 dark:text-white">menu</span>
+<h1 class="font-sans font-bold text-lg tracking-tight text-zinc-900 dark:text-white">Task Manager</h1>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-zinc-200">
+<img class="w-full h-full object-cover" data-alt="Professional portrait of a confident delivery professional in casual business attire, soft natural window lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZiIAZPRkt78O38-iYpJ6TPTmO7OnmLfSA_IXJeNUTXM8w7mME0mcJmiWIC5z-bNOdujtvo7GHilLBqfLghqu7oI9_gOcVxEPrakaE2Djkt2yBzqFFpBRf9gnrS4nxjHLjgggd-xf2l4svgBzdX_Qp2JQ4X5ATBFRcA72wTuhTw8yBULdYiOOLZOZVqv8K0W1bnz-qUauqr-_38BViTEtv0EtqYdrncww6WVmXkB7uClxqzo4GJi8ZVbqNgsk8GmhoRgX_4HXriduU"/>
+</div>
+</div>
+</header>
+<main class="pb-24">
+<!-- Hero Section: Driver Profile -->
+<section class="bg-white px-gutter py-8">
+<div class="flex flex-col items-center">
+<div class="relative w-28 h-28 mb-4">
+<img class="w-full h-full object-cover rounded-full border-4 border-surface-container" data-alt="Close-up portrait of a smiling male driver with short dark hair, wearing a navy polo shirt, bright daylight lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmKxt4wtnjfCchN0Q_pB-3k4rUUvFIbr9eaemdm8Larvso1Bte-II0ATz9U_aMjKBdErkaKnt4pqwxeqZiKb0HupxIjuhbiGlqY-YM7BJ94dFDEc6FfdmVlzh-Fpf-JTbn6VkBJdyctN62IaVhFQvU9MtzVc4-pCBaexqbd-HB0rKSxgDdldFkDmK4IvihF1CT4HAjNopBM4ICs7IaOCxN8gNzA_I0lEk6reHUqXFfoRJi4ELyYFD44YvOVMjG4rmU88dyXvoLbKI7"/>
+<div class="absolute bottom-1 right-1 bg-green-500 w-5 h-5 rounded-full border-2 border-white"></div>
+</div>
+<h2 class="font-headline-lg text-on-surface">Marcus Rodriguez</h2>
+<p class="font-body-md text-secondary mb-6">Gold Tier Courier • San Francisco, CA</p>
+<button class="w-full bg-primary-container text-on-primary py-3 rounded-lg font-label-bold active:opacity-70 transition-opacity">
+                    Edit Profile
+                </button>
+</div>
+</section>
+<!-- Stats Bento Grid -->
+<section class="px-gutter pt-stack-md">
+<div class="grid grid-cols-2 gap-tile-gap bg-outline-variant rounded-xl overflow-hidden border-[0.5px] border-outline-variant">
+<div class="bg-white p-4 flex flex-col justify-center items-center h-28">
+<span class="font-headline-xl text-primary">1,284</span>
+<span class="font-label-sm text-secondary uppercase">Deliveries</span>
+</div>
+<div class="bg-white p-4 flex flex-col justify-center items-center h-28">
+<div class="flex items-center gap-1">
+<span class="font-headline-xl text-on-surface">4.95</span>
+<span class="material-symbols-outlined text-yellow-500 text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="font-label-sm text-secondary uppercase">Rating</span>
+</div>
+<div class="bg-white p-4 flex flex-col justify-center items-center h-28">
+<span class="font-headline-xl text-on-surface">98%</span>
+<span class="font-label-sm text-secondary uppercase">On-Time</span>
+</div>
+<div class="bg-white p-4 flex flex-col justify-center items-center h-28">
+<span class="font-headline-xl text-on-surface">3.2</span>
+<span class="font-label-sm text-secondary uppercase">Years Exp.</span>
+</div>
+</div>
+</section>
+<!-- Recent Activity Section -->
+<section class="mt-stack-lg">
+<div class="px-gutter mb-2">
+<h3 class="font-label-bold text-secondary uppercase tracking-widest text-[11px]">Recent Activity</h3>
+</div>
+<div class="bg-white border-y border-zinc-200">
+<div class="flex items-center gap-4 p-4 hairline-b">
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">local_shipping</span>
+</div>
+<div class="flex-1">
+<p class="font-body-lg font-semibold text-on-surface">Order #8829 Delivered</p>
+<p class="font-body-md text-secondary">Mission District • 24 mins ago</p>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-on-surface">+$14.20</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 hairline-b">
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div class="flex-1">
+<p class="font-body-lg font-semibold text-on-surface">Weekly Payout Initiated</p>
+<p class="font-body-md text-secondary">To Bank account • Yesterday</p>
+</div>
+<div class="text-right">
+<p class="font-label-bold text-on-surface">-$842.00</p>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4">
+<div class="w-10 h-10 rounded bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div class="flex-1">
+<p class="font-body-lg font-semibold text-on-surface">Vehicle Inspection Passed</p>
+<p class="font-body-md text-secondary">San Bruno Center • 3 days ago</p>
+</div>
+<span class="material-symbols-outlined text-green-600">check_circle</span>
+</div>
+</div>
+</section>
+<!-- Settings Sections -->
+<section class="mt-stack-lg">
+<div class="px-gutter mb-2">
+<h3 class="font-label-bold text-secondary uppercase tracking-widest text-[11px]">Vehicle &amp; Availability</h3>
+</div>
+<div class="bg-white border-y border-zinc-200">
+<div class="flex items-center justify-between p-4 hairline-b active:bg-zinc-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">directions_car</span>
+<span class="font-body-lg text-on-surface">2022 Toyota Prius (Silver)</span>
+</div>
+<span class="material-symbols-outlined text-zinc-300">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 hairline-b active:bg-zinc-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">event_available</span>
+<div class="flex flex-col">
+<span class="font-body-lg text-on-surface">Availability</span>
+<span class="text-[12px] text-primary">Mon - Fri • 08:00 - 17:00</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-zinc-300">chevron_right</span>
+</div>
+<div class="flex items-center justify-between p-4 active:bg-zinc-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">notifications_active</span>
+<span class="font-body-lg text-on-surface">Push Notifications</span>
+</div>
+<div class="w-10 h-6 bg-primary rounded-full relative">
+<div class="absolute right-1 top-1 bg-white w-4 h-4 rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="mt-stack-lg px-gutter">
+<button class="w-full bg-surface-variant text-error font-label-bold py-3 rounded-lg active:bg-error-container transition-colors">
+                Sign Out
+            </button>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800">
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-sans text-[10px] font-semibold uppercase tracking-wider mt-1">Schedule</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-sans text-[10px] font-semibold uppercase tracking-wider mt-1">Maps</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim active:scale-95 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-sans text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

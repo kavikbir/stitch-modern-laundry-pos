@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#87CEEB",
+                        "primary-container": "#87CEEB",
+                        "on-primary-container": "#001e2c",
+                        "surface-variant": "#e1e2eb",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c6d5",
+                        "primary-fixed-dim": "#87CEEB",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-dim": "#d9dadb",
+                        "on-background": "#191c22",
+                        "outline": "#727784",
+                        "on-surface-variant": "#414753",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#001e2c",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#30476d",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed": "#c1e8ff",
+                        "surface": "#f8f9fa",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#004a77",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-container": "#af4900",
+                        "surface-container": "#ecedf6",
+                        "on-tertiary-container": "#ffe3d6",
+                        "secondary-fixed-dim": "#b0c7f5",
+                        "secondary-fixed": "#d7e3ff",
+                        "secondary-container": "#b9cffd",
+                        "surface-tint": "#87CEEB",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-high": "#e6e8f1",
+                        "on-secondary-container": "#425880",
+                        "inverse-primary": "#87CEEB",
+                        "tertiary": "#883700",
+                        "surface-container-highest": "#e1e2eb",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191c22",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#001e2c",
+                        "secondary": "#495f87",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "8px",
+                        "xl": "12px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "edge-margin": "40px",
+                        "tile-padding": "32px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Manrope", "sans-serif"],
+                        "body-sm": ["Manrope", "sans-serif"],
+                        "body-lg": ["Manrope", "sans-serif"],
+                        "display-hero": ["Manrope", "sans-serif"],
+                        "headline-lg": ["Manrope", "sans-serif"],
+                        "label-caps": ["Manrope", "sans-serif"],
+                        "headline-md": ["Manrope", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-hero": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            font-size: 20px;
+        }
+        .gallery-shadow {
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05));
+        }
+        body {
+            background-color: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-on-background">
+<!-- Global Top Nav (Immutable State: Customers Active) -->
+<header class="bg-neutral-950 dark:bg-black text-neutral-400 font-sans tracking-tight font-light flex justify-between items-center w-full px-8 h-12 fixed top-0 z-50">
+<div class="text-lg font-bold tracking-[0.2em] text-white uppercase">L'ARTISAN</div>
+<nav class="flex gap-stack-lg">
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Orders</a>
+<a class="text-white font-medium border-b-2 border-[#87CEEB] pb-1" href="#">Customers</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Billing</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined cursor-pointer hover:text-white">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white">settings</span>
+</div>
+</header>
+<!-- Operations Sub-Nav -->
+<section class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md flex justify-between items-center w-full px-8 h-16 fixed top-12 z-40 border-b border-neutral-100 dark:border-neutral-800">
+<div class="flex items-center gap-stack-md">
+<span class="material-symbols-outlined text-[#87CEEB]">grid_view</span>
+<h1 class="font-sans text-sm font-medium uppercase tracking-widest text-neutral-900 dark:text-white">Customer Directory</h1>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+            Add New Customer
+        </button>
+</section>
+<!-- Main Content Canvas -->
+<main class="pt-32 pb-20 px-edge-margin max-w-[1440px] mx-auto">
+<!-- Search Pill -->
+<div class="mb-stack-lg flex justify-center">
+<div class="relative w-full max-w-2xl">
+<span class="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-neutral-400">search</span>
+<input class="w-full h-14 pl-14 pr-6 bg-surface-container-lowest border-none rounded-full focus:ring-2 focus:ring-[#87CEEB] text-body-lg outline-none gallery-shadow" placeholder="Search customers by name, phone, or ID..." type="text"/>
+</div>
+</div>
+<!-- Progress Indicator (Minimalist Line) -->
+<div class="fixed top-0 left-0 w-full h-[2px] bg-neutral-200 z-[60]">
+<div class="h-full bg-[#87CEEB] w-1/3"></div>
+</div>
+<!-- Customer Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter mt-stack-lg">
+<!-- Customer Card 1 -->
+<div class="bg-surface-container-lowest rounded-[18px] p-tile-padding border border-neutral-100 flex flex-col justify-between h-[280px] hover:border-[#87CEEB] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">CUSTOMER ID #8821</p>
+<h2 class="font-headline-md text-headline-md text-neutral-900">Rajesh Kumar</h2>
+<p class="text-body-sm font-body-sm text-neutral-500 mt-1">+91 98765 43210</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden gallery-shadow bg-neutral-50">
+<img class="w-full h-full object-cover" data-alt="Professional studio headshot of a middle-aged man with a warm expression against a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQcOLfzaQ-RAs4pGd6AGlmFe5gwmV5sl72Qqq4il8hIpDsmdjllT4FAO0eE8t7AEN7THAEKQFYXnGVI1TtjVckihMhQru8_frCslPDPOWCJw2JGSP1hK5mSmZ3rMms80K5eFZBhfLXcYxkPvZGGwXMNK4HRwUR_5NcRGVs0yH4sS8TRxEo7W1TDhUpu1Id07hXd0XveEMTfbRXKoC7PmMX4t6fjcI1yHr304q9unkNm3aAyQaKVRUK3ZshTVrcIXMBYF3dQaudZXjU"/>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">LAST ORDER</p>
+<p class="text-body-sm font-body-sm text-neutral-700">Oct 24, 2023</p>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Customer Card 2 -->
+<div class="bg-neutral-950 rounded-[18px] p-tile-padding flex flex-col justify-between h-[280px] hover:bg-black transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-500 mb-1">CUSTOMER ID #8822</p>
+<h2 class="font-headline-md text-headline-md text-white">Ananya Sharma</h2>
+<p class="text-body-sm font-body-sm text-neutral-400 mt-1">+91 98221 11002</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden gallery-shadow bg-neutral-800">
+<img class="w-full h-full object-cover" data-alt="Portrait of a young woman smiling, editorial lighting on a neutral grey background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDRJA47C0yVQ2eZRepPhtP0GIxnOzJYxMYRbVROQekUiVQKiJw8h3TZPV89bxfZvY8ognUupqKL5JLJOfZoCY2Za1WaSW4oE8nGuvosB9CTzrBQL_8naZBVkcQfe0cxciVXHXuHAs4hRmDREtE216WyXMZTs1xeLgvePbR7SFUeymUj6pUZlygjOFoFfjXkeS3Ic5MEi2dU_AfRCNOCPshWWGCRmaU9GtKWEr6sOGWiQ0RnVXyAnhPvRVnKoo9nwc82RE8EWmXJHua"/>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-500 mb-1">LAST ORDER</p>
+<p class="text-body-sm font-body-sm text-neutral-300">Oct 22, 2023</p>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Customer Card 3 -->
+<div class="bg-surface-container-lowest rounded-[18px] p-tile-padding border border-neutral-100 flex flex-col justify-between h-[280px] hover:border-[#87CEEB] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">CUSTOMER ID #8823</p>
+<h2 class="font-headline-md text-headline-md text-neutral-900">Vikram Singh</h2>
+<p class="text-body-sm font-body-sm text-neutral-500 mt-1">+91 99002 88371</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden gallery-shadow bg-neutral-50">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a man with short hair in a light blue shirt, clean minimalist aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApl-NXmBsekZyLoE2MXR70eMkzT7DDC7qgp-OF8y1wz8OWnRKhDAb3q4Af7u7Xb3Hrk8hI7pPmImyL7I_I8np4DFDcvEkpOu4eL97iUCOH6msJQMjznnZZeNWGCCMtYPmbnJVG1q_uEYrz5WJMcFqYsnTOGKypEyZa9LzfEY1dQNjW8-zDROqKpeqPRrmH_KVAthQgwtQHJxb0jUsk2ldNr4MpbaJEmxiNCezRWcpOb6mH5D60Eh-Ygv_gconOzqR_dNT4OoxuZgHc"/>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">LAST ORDER</p>
+<p class="text-body-sm font-body-sm text-neutral-700">Oct 20, 2023</p>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Customer Card 4 -->
+<div class="bg-surface-container-lowest rounded-[18px] p-tile-padding border border-neutral-100 flex flex-col justify-between h-[280px] hover:border-[#87CEEB] transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">CUSTOMER ID #8824</p>
+<h2 class="font-headline-md text-headline-md text-neutral-900">Priya Iyer</h2>
+<p class="text-body-sm font-body-sm text-neutral-500 mt-1">+91 91123 44556</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden gallery-shadow bg-neutral-50">
+<img class="w-full h-full object-cover" data-alt="Professional woman in a dark blazer smiling confidently against a soft cream background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGzwA3rxx0DvNOxeCQDqvzUMPL-8k4qGNwC5muxQGdHYPSSQtQLZ_QX2fRQ6ezagOjNPUZZwgDRtLhIMVC1dH24ZOwQ2YeSefNAYuDnKY4Gl5ppXJNBFXcCt5FikucEVWno-xxrzfI0nKj27C3b4sR1TX25FGGjWzhGPKxAlIhxmuL0lkGOi8oAEeGnoT832cLOhsTXKKgTLKdSvGHe8bEZwrytVktkT6PUMVd1UYWcFxxnUSkfg__NPjTKJc7ehTRQvZtbv2OeSp4"/>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-400 mb-1">LAST ORDER</p>
+<p class="text-body-sm font-body-sm text-neutral-700">Oct 19, 2023</p>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Customer Card 5 -->
+<div class="bg-neutral-950 rounded-[18px] p-tile-padding flex flex-col justify-between h-[280px] hover:bg-black transition-colors">
+<div class="flex justify-between items-start">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-500 mb-1">CUSTOMER ID #8825</p>
+<h2 class="font-headline-md text-headline-md text-white">Rohan Mehra</h2>
+<p class="text-body-sm font-body-sm text-neutral-400 mt-1">+91 97712 33445</p>
+</div>
+<div class="w-12 h-12 rounded-full overflow-hidden gallery-shadow bg-neutral-800">
+<img class="w-full h-full object-cover" data-alt="Casual portrait of a young man in a white t-shirt, soft natural morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh5rKLkthIAxuQ1yWRqaGf1yvvlMU1NPxfkV47BrMvZxDhjDxZ38gE_yTBxa5xjlNkjgvu5AiqIsbJEPXQS9x6nJSuzfZqKxDg9GS3f_xHk205L2nzirKiMh-8bS8n4cDNwtLizek0_BaVVFJ2jW7EPwmv__AVKvZNwGIYMccaJ_craiFdjDjlbVGrtTyhAAWt547c3kWzEtnPqYG0H-k_JidSgD9Lt_AhoVeP9wtCZmhqEFDfFpVhtx3Cq91ky-ZiW1tAY6IF0IVh"/>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="text-label-caps font-label-caps text-neutral-500 mb-1">LAST ORDER</p>
+<p class="text-body-sm font-body-sm text-neutral-300">Oct 15, 2023</p>
+</div>
+<button class="bg-[#87CEEB] text-on-primary-container px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+                        New Order
+                    </button>
+</div>
+</div>
+<!-- Empty State / Add New Placeholder -->
+<div class="bg-surface-container-low border-2 border-dashed border-neutral-200 rounded-[18px] p-tile-padding flex flex-col items-center justify-center h-[280px] group cursor-pointer hover:bg-white hover:border-[#87CEEB] transition-all">
+<div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-stack-md group-hover:bg-[#87CEEB] group-hover:text-on-primary-container transition-colors">
+<span class="material-symbols-outlined text-[32px]">person_add</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-neutral-400 group-hover:text-[#87CEEB]">Register New</h3>
+<p class="text-body-sm font-body-sm text-neutral-400">Expand your client base</p>
+</div>
+</div>
+</main>
+<!-- Side Summary Shell (Contextual Transaction Info) -->
+<aside class="fixed right-0 top-28 bottom-0 w-80 bg-neutral-50 dark:bg-neutral-900 border-l border-neutral-200 dark:border-neutral-800 flex flex-col p-6 overflow-y-auto z-30">
+<div class="mb-stack-lg">
+<h3 class="text-neutral-900 dark:text-white text-base font-bold">Order Summary</h3>
+<p class="text-neutral-500 text-xs font-semibold">Transaction ID: #8291</p>
+</div>
+<div class="flex flex-col gap-unit">
+<button class="flex items-center gap-stack-md p-4 bg-white dark:bg-neutral-800 text-[#87CEEB] rounded-lg translate-x-1 transition-all">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="font-sans text-xs font-semibold">Current Cart</span>
+</button>
+<button class="flex items-center gap-stack-md p-4 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-sans text-xs font-semibold">Customer Details</span>
+</button>
+<button class="flex items-center gap-stack-md p-4 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined">sell</span>
+<span class="font-sans text-xs font-semibold">Pricing Adjustments</span>
+</button>
+<button class="flex items-center gap-stack-md p-4 text-neutral-500 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors">
+<span class="material-symbols-outlined">edit_note</span>
+<span class="font-sans text-xs font-semibold">Notes</span>
+</button>
+</div>
+<div class="mt-auto pt-stack-lg">
+<div class="flex justify-between mb-stack-sm">
+<span class="text-body-sm text-neutral-500">Items (0)</span>
+<span class="text-body-sm text-neutral-900">₹0.00</span>
+</div>
+<button class="w-full bg-[#87CEEB] text-on-primary-container py-4 rounded-full font-label-caps text-label-caps opacity-50 cursor-not-allowed">
+                Complete Order
+            </button>
+</div>
+</aside>
+<!-- Bottom Navigation (Mobile Only Responsive Pivot) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-white h-16 flex justify-around items-center px-4 border-t border-neutral-100 z-50">
+<span class="material-symbols-outlined text-neutral-400">dashboard</span>
+<span class="material-symbols-outlined text-neutral-400">receipt_long</span>
+<span class="material-symbols-outlined text-[#87CEEB]" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="material-symbols-outlined text-neutral-400">payments</span>
+<span class="material-symbols-outlined text-neutral-400">analytics</span>
+</nav>
+</body></html>

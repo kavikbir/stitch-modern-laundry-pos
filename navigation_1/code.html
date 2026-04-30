@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#5f5e60",
+                        "on-tertiary-fixed-variant": "#454749",
+                        "background": "#f9f9f9",
+                        "outline-variant": "#c1c6d5",
+                        "inverse-surface": "#2f3131",
+                        "on-surface-variant": "#414753",
+                        "surface-variant": "#e2e2e2",
+                        "on-primary-fixed-variant": "#00458e",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface": "#1a1c1c",
+                        "outline": "#727784",
+                        "primary-fixed-dim": "#aac7ff",
+                        "inverse-primary": "#aac7ff",
+                        "on-secondary-fixed": "#1b1b1d",
+                        "inverse-on-surface": "#f0f1f1",
+                        "on-tertiary-container": "#e8e8ea",
+                        "surface-container-high": "#e8e8e8",
+                        "on-secondary-container": "#636264",
+                        "secondary-fixed-dim": "#c8c6c8",
+                        "surface-dim": "#dadada",
+                        "surface": "#f9f9f9",
+                        "secondary-fixed": "#e4e2e4",
+                        "surface-tint": "#005cba",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed": "#d7e3ff",
+                        "tertiary-fixed": "#e2e2e4",
+                        "on-tertiary-fixed": "#1a1c1d",
+                        "tertiary": "#4e5052",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#c6c6c8",
+                        "tertiary-container": "#67686a",
+                        "primary": "#004e9f",
+                        "surface-container": "#eeeeee",
+                        "on-error": "#ffffff",
+                        "on-background": "#1a1c1c",
+                        "on-primary-container": "#dfe8ff",
+                        "on-primary-fixed": "#001b3e",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f3f4",
+                        "on-secondary-fixed-variant": "#474649",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#e2dfe1",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-container": "#0066cc",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "12px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "touch-target-min": "44px",
+                        "safe-area": "20px",
+                        "tile-gap": "1px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "headline-md": ["22px", {"lineHeight": "28px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-xl": ["34px", {"lineHeight": "41px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "body-lg": ["17px", {"lineHeight": "22px", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "label-bold": ["13px", {"lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "label-sm": ["11px", {"lineHeight": "13px", "letterSpacing": "0.04em", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #000;
+        }
+        .scrim-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 25%, rgba(0,0,0,0) 75%, rgba(0,0,0,0.8) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface antialiased overflow-hidden h-screen w-screen flex flex-col">
+<header class="fixed top-0 w-full z-50 bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800 flex justify-between items-center px-4 h-14 flat no shadows">
+<div class="flex items-center gap-4">
+<button class="active:opacity-70 transition-opacity p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-900">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-500" data-icon="menu">menu</span>
+</button>
+<h1 class="font-inter font-bold text-lg tracking-tight text-zinc-900 dark:text-white">Task Manager</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="text-blue-600 dark:text-blue-400 font-semibold text-label-bold uppercase tracking-wider">Active Trip</span>
+<div class="h-8 w-8 rounded-full overflow-hidden border border-zinc-200 dark:border-zinc-800">
+<img alt="Driver Profile" class="w-full h-full object-cover" data-alt="close-up portrait of a professional delivery driver in high-quality corporate uniform with friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSHDJ_zbTafLPOqhRrSnVfBQh5lHV8KWgP1J5Nh6goQZ3qSj8caOjb-H8TKdZXDIJhLewhopx8lItDQSwDPShG2oju4qvN-8U614x4RK3jv_nHxEHhSsfmOHrdeBnSnbpD666dMMFGpvaNBn3K74tuxIzyYV_FG8eKZraMOaODT7FhP3iZnZ1pFQnvZtyaT_1JXWYNDdPowZc-g6pshnn7POhwqOaZ0AdtPTCu945kpLXFpn25SY9cFSbTOqpg2JjlX1_uAT2HisD6"/>
+</div>
+</div>
+</header>
+<main class="relative flex-1 w-full overflow-hidden mt-14 mb-16">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="high-angle satellite style dark mode map of an urban city center with glowing blue transit lines and minimalist dark aesthetic" data-location="New Delhi" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf0zd317vLxEEXvLFfrk-Xr-Dtv6wg4xiIBGKqma9Rh_PPtN_IWedYtNpxR6hAq4nKy4irIZ8BmRyRCMvYJ-iTO1g5h1Unor_fJpT4TY7bay6NN4zNJtoaI1rOMgijV4QdgO97WxPT136jwcXmWu0m5mCn_fQxV2qwPjWUMyBLQwyHyVOtDfWnSUjfeFp6NJMQj6rrkRI_J5bd-uz6ruv72BFvFzQ0aKTVVzd0DSVYxJwcXX8yfDnHPAJYqHfbfVnI4UGr2LzdRrmk"/>
+<div class="absolute inset-0 scrim-overlay pointer-events-none"></div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative w-full h-full flex items-center justify-center p-8">
+<div class="w-full max-w-md h-full relative">
+<svg class="absolute inset-0 w-full h-full drop-shadow-2xl" fill="none" viewbox="0 0 400 800" xmlns="http://www.w3.org/2000/svg">
+<path class="opacity-90" d="M50 700 C 100 650, 150 600, 200 400 S 300 150, 350 100" stroke="#0066CC" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
+<circle cx="50" cy="700" fill="white" r="10" stroke="#0066CC" stroke-width="4"></circle>
+<path d="M350 100 L 335 125 L 365 125 Z" fill="#0066CC"></path>
+</svg>
+</div>
+</div>
+</div>
+<div class="absolute top-4 left-4 right-4 flex flex-col gap-3 pointer-events-none">
+<div class="bg-black/80 backdrop-blur-md rounded-xl p-4 flex items-center gap-4 pointer-events-auto border border-white/10 max-w-sm">
+<div class="bg-blue-600 p-2 rounded-lg">
+<span class="material-symbols-outlined text-white text-2xl" data-icon="turn_right">turn_right</span>
+</div>
+<div>
+<div class="font-headline-md text-white">450 m</div>
+<div class="font-body-md text-zinc-400">Turn right onto MG Road</div>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 left-4 right-4 z-20">
+<div class="bg-primary-container text-on-primary text-on-primary-container p-5 rounded-2xl shadow-2xl flex flex-col gap-4 max-w-lg mx-auto border border-white/10 backdrop-blur-sm">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-white/70 font-label-sm uppercase tracking-widest">Next Stop</span>
+<h2 class="font-headline-lg text-white mt-1">Rajesh Kumar</h2>
+<p class="font-body-md text-white/90 mt-1">A-42 Sector 15, North Block</p>
+</div>
+<div class="bg-white/20 px-3 py-1 rounded-full backdrop-blur-md border border-white/20">
+<span class="text-white font-label-bold">ETA 8 mins</span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 bg-white text-primary font-label-bold h-touch-target-min rounded-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" data-icon="navigation" data-weight="fill">navigation</span>
+                        Resume Navigation
+                    </button>
+<button class="w-12 h-touch-target-min bg-white/10 text-white rounded-lg active:scale-95 transition-transform flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="call">call</span>
+</button>
+<button class="w-12 h-touch-target-min bg-white/10 text-white rounded-lg active:scale-95 transition-transform flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="chat_bubble">chat_bubble</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-16 pb-safe bg-white dark:bg-zinc-950 border-t border-zinc-200 dark:border-zinc-800 flat no shadows">
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-blue-500 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Schedule</span>
+</button>
+<button class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 hover:text-blue-500 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="explore" data-weight="fill">explore</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Maps</span>
+</button>
+<button class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-600 hover:text-blue-500 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-inter text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

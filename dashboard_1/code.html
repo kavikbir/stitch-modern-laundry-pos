@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#793000",
+                        "surface-variant": "#e1e2eb",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c6d5",
+                        "primary-fixed-dim": "#aac7ff",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-dim": "#d8d9e2",
+                        "on-background": "#191c22",
+                        "outline": "#727784",
+                        "on-surface-variant": "#414753",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#001b3e",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9ff",
+                        "on-secondary-fixed-variant": "#30476d",
+                        "surface-bright": "#f9f9ff",
+                        "primary-fixed": "#d7e3ff",
+                        "surface": "#f9f9ff",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#00458e",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "primary-container": "#0066cc",
+                        "surface-container-low": "#f2f3fc",
+                        "tertiary-container": "#af4900",
+                        "surface-container": "#ecedf6",
+                        "on-tertiary-container": "#ffe3d6",
+                        "secondary-fixed-dim": "#b0c7f5",
+                        "secondary-fixed": "#d7e3ff",
+                        "secondary-container": "#b9cffd",
+                        "surface-tint": "#005cba",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-high": "#e6e8f1",
+                        "on-secondary-container": "#425880",
+                        "inverse-primary": "#aac7ff",
+                        "primary": "#004e9f",
+                        "tertiary": "#883700",
+                        "surface-container-highest": "#e1e2eb",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191c22",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#dfe8ff",
+                        "secondary": "#495f87",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "edge-margin": "40px",
+                        "tile-padding": "32px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["SF Pro Text"],
+                        "body-lg": ["SF Pro Text"],
+                        "display-hero": ["SF Pro Display"],
+                        "headline-lg": ["SF Pro Display"],
+                        "label-caps": ["SF Pro Display"],
+                        "headline-md": ["SF Pro Display"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-hero": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-shadow {
+            filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.08));
+        }
+        body {
+            background-color: #f9f9ff;
+        }
+    </style>
+</head>
+<body class="font-body-lg text-on-surface">
+<!-- Top Progress Indicator -->
+<div class="fixed top-0 left-0 w-full h-[2px] bg-primary-container z-[100]"></div>
+<!-- TopAppBar Global (Black Bar) -->
+<nav class="bg-neutral-950 dark:bg-black font-sans tracking-tight font-light flex justify-between items-center w-full px-8 h-12 docked full-width top-0 z-50">
+<div class="text-lg font-bold tracking-[0.2em] text-white uppercase">L'ARTISAN</div>
+<div class="flex items-center space-x-8">
+<a class="text-white font-medium border-b-2 border-blue-600 pb-1 transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Orders</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Customers</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Billing</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Reports</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="text-neutral-400 hover:text-white transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-neutral-400 hover:text-white transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</nav>
+<!-- Sub-nav Overview Bar -->
+<header class="bg-white/80 backdrop-blur-md flex justify-between items-center w-full px-8 h-16 border-b border-neutral-100 docked full-width top-12 z-40">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="grid_view">grid_view</span>
+<h1 class="font-headline-md text-headline-md uppercase tracking-widest text-on-surface">Operations Overview</h1>
+</div>
+<button class="bg-primary-container text-white px-6 py-2 rounded-full font-label-caps text-label-caps hover:opacity-90 active:scale-95 transition-all">
+            Create New Order
+        </button>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-32 px-edge-margin pb-edge-margin max-w-[1440px] mx-auto">
+<!-- Metrics Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-lg">
+<!-- Total Orders -->
+<div class="bg-white p-tile-padding rounded-[18px] flex flex-col justify-between h-64 border border-neutral-50">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-stack-sm uppercase">Total Orders Today</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">24</h2>
+</div>
+<div class="flex justify-center items-center">
+<img class="signature-shadow rounded-lg object-contain h-24" data-alt="neatly folded stacks of white linen towels on a minimalist bright surface with soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOqP_4BzAlWNNIUtjVR1cUzCTOWa1B-ttP9iJTkOxvG_JlqdSQMHdhWQILDxnf5rjOvguHce8u4AVhU1tXZudkItUTWB0aXN3hfYRrLcwg3SoDAZl3Y2oNITa_1bGBW5uaEK9icHV97aiXxNM71DEscm91YV5vOQ-trgl9LW0jdH3hJqQabaDATzA8MV_H9zdyUzT1lSMkA9Uhn7_IqUFB7e4i9rsF2btUthmaFvH0VQmh1jHlZJhYNXAw8n7ixg_6naFXmOtsYDpM"/>
+</div>
+</div>
+<!-- Revenue -->
+<div class="bg-[#272729] p-tile-padding rounded-[18px] flex flex-col justify-between h-64 text-white">
+<div>
+<span class="font-label-caps text-label-caps text-neutral-400 block mb-stack-sm uppercase">Revenue</span>
+<h2 class="font-headline-lg text-headline-lg">₹12,450</h2>
+</div>
+<div class="flex items-end justify-between">
+<span class="text-primary-container font-medium text-body-sm">+12% vs yesterday</span>
+<span class="material-symbols-outlined text-primary-container" data-icon="trending_up">trending_up</span>
+</div>
+</div>
+<!-- Pending Deliveries -->
+<div class="bg-white p-tile-padding rounded-[18px] flex flex-col justify-between h-64 border border-neutral-50">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-stack-sm uppercase">Pending Deliveries</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">8</h2>
+</div>
+<div class="flex justify-center items-center">
+<img class="signature-shadow rounded-lg object-contain h-24" data-alt="folded blue and white dress shirts in a transparent protective cover resting on a clean white surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXoyxtVgJQ-XnJAG7GfU5vJ9TxDzxrPBL8FSyoN67GjKILKMW1B9_0vc1nqKXTIO0VVnAUqfslkr33k9bvOuIkwzS2zHODBW1l8qfwjw3hSL2MICJCJ_DFTrhZYpo6IfZcAwkkBasthjNSkxWX74VKnlYs6Kympke3TojuKOBNG8kqDiBDW43aU7qXc6TKt-FPHd2J7vk3988jnxWTzNyBZEy2Y8Df0fiJMzPAE7JuST4ECPXoIj1g_8EH7N8WKrbNVHWbQUTpb51g"/>
+</div>
+</div>
+<!-- In-Processing -->
+<div class="bg-white p-tile-padding rounded-[18px] flex flex-col justify-between h-64 border border-neutral-50">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-stack-sm uppercase">In-Processing</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">15</h2>
+</div>
+<div class="flex items-center space-x-2">
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-white flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="w-8 h-8 rounded-full bg-secondary-container border-2 border-white flex items-center justify-center text-[10px] font-bold">AS</div>
+<div class="w-8 h-8 rounded-full bg-primary-container text-white border-2 border-white flex items-center justify-center text-[10px] font-bold">+5</div>
+</div>
+<span class="text-body-sm text-on-surface-variant">Active Staff</span>
+</div>
+</div>
+</div>
+<!-- Featured Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Facility Overview (Photography-first) -->
+<div class="md:col-span-8 bg-white rounded-[18px] overflow-hidden border border-neutral-50 flex flex-col md:flex-row">
+<div class="md:w-1/2 p-tile-padding flex flex-col justify-center">
+<h3 class="font-headline-lg text-headline-lg mb-stack-md text-on-surface">Operational Efficiency</h3>
+<p class="text-on-surface-variant font-body-lg mb-stack-lg">Our high-end gallery-style processing facility is currently running at 84% capacity. Priority orders are being fast-tracked through Station 4.</p>
+<div class="flex space-x-4">
+<button class="bg-[#f5f5f7] text-[#1d1d1f] px-6 py-2 rounded-lg font-label-caps text-label-caps hover:bg-neutral-200 transition-colors">View Stations</button>
+<button class="text-primary-container font-label-caps text-label-caps py-2 flex items-center">
+                            Facility Map <span class="material-symbols-outlined ml-1" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+<div class="md:w-1/2 relative min-h-[300px]">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="interior of a modern high-end laundry facility with rows of industrial machines and pristine white walls and floors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxKzJrqKCW9KSP8h3jPSc7f0Ws_enge8Ev4ZS_BItaIYcm8P9UyzIZPBciH_pPf3Pjo2UOCnipSpLBdjVloHZbweFiTJ6lb7xGT14OIJoOO_UjYjKioYtVCYdXX6KGgxgqpcxArCRMsX2II2XZvrEEy2dmFZjgih8EA-cA8uQUPix3AN2FB8e4wZVWLviJYmyfMuRxB_Iv3bPjW8dQ6UGzUf9SyK8D0z0MPQCmKbw5Ho-FquKklZeauVpx37rdt6339sWJZt4C8Kc6"/>
+</div>
+</div>
+<!-- Side Quick Actions (SideNavBar Simulation) -->
+<div class="md:col-span-4 bg-neutral-50 rounded-[18px] p-6 flex flex-col border border-neutral-200">
+<div class="mb-stack-lg">
+<h4 class="font-headline-md text-headline-md text-on-surface mb-1">Queue Status</h4>
+<p class="text-on-surface-variant font-body-sm">Transaction ID: #8291</p>
+</div>
+<div class="space-y-2 mb-stack-lg">
+<div class="flex items-center p-3 bg-white text-primary-container rounded-lg font-sans text-xs font-semibold signature-shadow">
+<span class="material-symbols-outlined mr-3" data-icon="shopping_cart">shopping_cart</span>
+                        Current Cart
+                    </div>
+<div class="flex items-center p-3 text-neutral-500 font-sans text-xs font-semibold hover:bg-neutral-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined mr-3" data-icon="person">person</span>
+                        Customer Details
+                    </div>
+<div class="flex items-center p-3 text-neutral-500 font-sans text-xs font-semibold hover:bg-neutral-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined mr-3" data-icon="sell">sell</span>
+                        Pricing Adjustments
+                    </div>
+<div class="flex items-center p-3 text-neutral-500 font-sans text-xs font-semibold hover:bg-neutral-100 rounded-lg transition-colors">
+<span class="material-symbols-outlined mr-3" data-icon="edit_note">edit_note</span>
+                        Notes
+                    </div>
+</div>
+<div class="mt-auto border-t border-neutral-200 pt-6">
+<div class="flex justify-between mb-4">
+<span class="text-on-surface-variant font-body-sm">Total Value</span>
+<span class="text-on-surface font-bold">₹2,450</span>
+</div>
+<button class="w-full bg-primary-container text-white py-4 rounded-full font-label-caps text-label-caps uppercase tracking-widest shadow-lg hover:opacity-90 transition-opacity">
+                        Complete Order
+                    </button>
+</div>
+</div>
+</div>
+<!-- Recent Activity Table-less Grid -->
+<div class="mt-stack-lg">
+<h3 class="font-headline-md text-headline-md mb-stack-lg uppercase tracking-widest text-on-surface">Live Feed</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-white p-6 rounded-[18px] border border-neutral-50 flex items-center space-x-6">
+<div class="w-16 h-16 bg-[#f5f5f7] rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary-container" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div>
+<p class="font-headline-md text-body-lg text-on-surface">Order #9021 Delivered</p>
+<p class="text-on-surface-variant text-body-sm">Mr. Kapoor · 4 mins ago</p>
+</div>
+</div>
+<div class="bg-[#272729] p-6 rounded-[18px] flex items-center space-x-6">
+<div class="w-16 h-16 bg-neutral-800 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="dry_cleaning">dry_cleaning</span>
+</div>
+<div>
+<p class="font-headline-md text-body-lg text-white">Station 2 In-Processing</p>
+<p class="text-neutral-400 text-body-sm">12 Silk Sarees · Just now</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- SideNavBar (Hidden/Floating for context if needed, but here integrated as utility) -->
+<!-- The user context is 'Dashboard', so the global nav handles primary navigation -->
+</body></html>

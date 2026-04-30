@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#87CEEB",
+                        "primary-container": "#87CEEB",
+                        "on-primary-container": "#001F2A",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "surface-variant": "#e1e2eb",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c1c6d5",
+                        "primary-fixed-dim": "#87CEEB",
+                        "inverse-on-surface": "#eff0f9",
+                        "surface-dim": "#d9dadb",
+                        "on-background": "#191c22",
+                        "outline": "#727784",
+                        "on-surface-variant": "#414753",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "on-primary-fixed": "#001b3e",
+                        "on-primary": "#000000",
+                        "background": "#f8f9fa",
+                        "on-secondary-fixed-variant": "#30476d",
+                        "surface-bright": "#f8f9fa",
+                        "primary-fixed": "#d7e3ff",
+                        "surface": "#f8f9fa",
+                        "on-secondary-fixed": "#001b3e",
+                        "on-primary-fixed-variant": "#00458e",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "surface-container-low": "#f3f4f5",
+                        "tertiary-container": "#af4900",
+                        "surface-container": "#ecedf1",
+                        "on-tertiary-container": "#ffe3d6",
+                        "secondary-fixed-dim": "#b0c7f5",
+                        "secondary-fixed": "#d7e3ff",
+                        "secondary-container": "#b9cffd",
+                        "surface-tint": "#87CEEB",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-high": "#e6e8f1",
+                        "on-secondary-container": "#425880",
+                        "inverse-primary": "#aac7ff",
+                        "tertiary": "#883700",
+                        "surface-container-highest": "#e1e2eb",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191c22",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#001F2A",
+                        "secondary": "#495f87",
+                        "error-container": "#ffdad6",
+                        "azure-accent": "#87CEEB"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "8px",
+                        "lg": "8px",
+                        "xl": "8px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "edge-margin": "40px",
+                        "tile-padding": "32px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "unit": "4px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "sans": ["Manrope", "sans-serif"],
+                        "body-sm": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display-hero": ["Manrope"],
+                        "headline-lg": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "headline-md": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["17px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display-hero": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { background-color: #f8f9fa; color: #191c22; font-family: 'Manrope', sans-serif; }
+        .gallery-tile { border-radius: 8px; transition: transform 0.2s ease; }
+        .signature-shadow { filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08)); }
+        .progress-bar-top { position: fixed; top: 0; left: 0; width: 65%; height: 2px; background-color: #87CEEB; z-index: 9999; }
+    </style>
+</head>
+<body class="font-body-lg">
+<div class="progress-bar-top"></div>
+<!-- TopAppBar Global (Black Bar) -->
+<header class="bg-neutral-950 dark:bg-black text-white flex justify-between items-center w-full px-8 h-12 fixed top-0 z-[100] font-sans tracking-tight font-light">
+<div class="text-lg font-bold tracking-[0.2em] text-white uppercase">L'ARTISAN</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Orders</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Customers</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Billing</a>
+<a class="text-white font-medium border-b-2 border-azure-accent pb-1" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- TopAppBar Secondary (Sub-nav) -->
+<div class="bg-white/80 backdrop-blur-md flex justify-between items-center w-full px-8 h-16 border-b border-neutral-100 fixed top-12 z-[90]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-azure-accent" data-icon="grid_view">grid_view</span>
+<h1 class="font-headline-md text-neutral-900 uppercase tracking-widest text-sm">Operations Overview</h1>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-neutral-100 px-4 py-2 rounded-lg gap-2 cursor-pointer hover:bg-neutral-200 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="calendar_today">calendar_today</span>
+<span class="text-xs font-semibold uppercase tracking-wider">This Month</span>
+<span class="material-symbols-outlined text-sm" data-icon="expand_more">expand_more</span>
+</div>
+<button class="bg-azure-accent text-black px-6 py-2 rounded-full text-xs font-semibold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+            Create New Order
+        </button>
+</div>
+</div>
+<!-- SideNavBar (Summary Panel) -->
+<aside class="fixed right-0 top-28 bottom-0 flex flex-col p-6 overflow-y-auto bg-neutral-50 border-l border-neutral-200 w-80 z-40">
+<div class="mb-8">
+<h2 class="text-neutral-900 text-base font-bold font-headline-md">Order Summary</h2>
+<p class="text-neutral-500 text-xs font-sans">Transaction ID: #8291</p>
+</div>
+<div class="space-y-2 flex-grow">
+<div class="flex items-center gap-4 p-3 bg-white text-azure-accent rounded-lg shadow-sm">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Current Cart</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-neutral-500 hover:bg-neutral-100 rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Customer Details</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-neutral-500 hover:bg-neutral-100 rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="sell">sell</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Pricing Adjustments</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-neutral-500 hover:bg-neutral-100 rounded-lg transition-all cursor-pointer">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Notes</span>
+</div>
+</div>
+<div class="mt-8">
+<div class="bg-white rounded-lg p-4 mb-4 border border-neutral-100">
+<img class="w-full h-32 object-cover rounded-lg signature-shadow mb-3" data-alt="neatly folded stacks of white hotel linens on a bright white marble surface with soft daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzWo8KH-6oaVfLs5ek2VPBreP9WacWhGCh3djyFudI-uwtkW7tGPJ13He7wz_ESMfhz67z6EuTy_JA7eDlGxSJIbLlZ9ZGB7jaT-h313N6-AwjcjBKP1qnV6zVUNZwWZCgH4EASC1U-QAprlWuGVTk3Oj7skAXeCNOmABW44ZbXt2B5sIDlRrk4rzi23kOxyHVjVGSpKtpUCNTSj8mdHCo1EF4T5nP_pBr-WjPJ9RRG8v1HBiFW2gnmKfHtrXeG6xCKgjkEYt_7LX7"/>
+<div class="flex justify-between items-center">
+<span class="text-xs font-bold text-neutral-900 uppercase">Premium Wash</span>
+<span class="text-sm font-bold text-azure-accent">$42.00</span>
+</div>
+</div>
+<button class="w-full bg-azure-accent text-black py-4 rounded-full text-xs font-bold uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+            Complete Order
+        </button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-36 pr-80 pl-8 pb-12 max-w-[1600px]">
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Weekly Revenue: Bar Chart -->
+<section class="col-span-12 lg:col-span-8 gallery-tile bg-white p-tile-padding shadow-sm">
+<div class="flex justify-between items-end mb-stack-lg">
+<div>
+<h3 class="font-headline-md text-neutral-900 mb-1">Weekly Revenue</h3>
+<p class="text-neutral-500 font-body-sm">Visualizing net sales performance across seven days.</p>
+</div>
+<div class="text-right">
+<span class="text-headline-lg font-headline-lg text-azure-accent">$14,290</span>
+<div class="flex items-center justify-end text-green-600 text-xs font-bold gap-1 mt-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                        12% vs last week
+                    </div>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between gap-4 px-4 border-b border-neutral-100">
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[40%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Mon</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[60%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Tue</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-azure-accent rounded-t-lg h-[85%]"></div>
+<span class="text-[10px] font-bold text-neutral-900 mt-3 uppercase tracking-tighter">Wed</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[55%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Thu</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[70%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Fri</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[95%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Sat</span>
+</div>
+<div class="flex flex-col items-center flex-1">
+<div class="w-full bg-neutral-100 rounded-t-lg h-[45%] hover:bg-azure-accent transition-colors duration-300"></div>
+<span class="text-[10px] font-bold text-neutral-400 mt-3 uppercase tracking-tighter">Sun</span>
+</div>
+</div>
+</section>
+<!-- Top Services: Pie/Donut Chart Style -->
+<section class="col-span-12 lg:col-span-4 gallery-tile bg-[#272729] text-white p-tile-padding shadow-sm overflow-hidden flex flex-col justify-between">
+<div>
+<h3 class="font-headline-md text-white mb-1">Top Services</h3>
+<p class="text-neutral-400 font-body-sm">Wash vs. Dry Clean distribution</p>
+</div>
+<div class="relative flex justify-center items-center my-stack-lg">
+<!-- Fake Donut Chart via CSS Circles -->
+<div class="w-40 h-40 rounded-full border-[16px] border-azure-accent flex justify-center items-center">
+<div class="w-full h-full rounded-full border-[16px] border-neutral-800 border-t-transparent border-l-transparent absolute rotate-45"></div>
+<div class="text-center">
+<span class="block text-2xl font-bold">64%</span>
+<span class="block text-[10px] uppercase tracking-widest text-neutral-400">Wash</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-azure-accent"></div>
+<span class="text-xs font-semibold uppercase tracking-wider">Wash &amp; Fold</span>
+</div>
+<span class="text-xs font-bold">284 Orders</span>
+</div>
+<div class="flex justify-between items-center">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-neutral-700"></div>
+<span class="text-xs font-semibold uppercase tracking-wider">Dry Cleaning</span>
+</div>
+<span class="text-xs font-bold">156 Orders</span>
+</div>
+</div>
+</section>
+<!-- Customer Growth: Line Chart Style Bento -->
+<section class="col-span-12 gallery-tile bg-white p-tile-padding shadow-sm mt-gutter">
+<div class="flex flex-col md:flex-row gap-gutter">
+<div class="md:w-1/3">
+<h3 class="font-headline-md text-neutral-900 mb-1">Customer Growth</h3>
+<p class="text-neutral-500 font-body-sm mb-stack-lg">New member acquisitions and retention trends for the current period.</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-neutral-50 p-4 rounded-lg">
+<span class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">New</span>
+<div class="text-xl font-bold text-neutral-900">+48</div>
+</div>
+<div class="bg-neutral-50 p-4 rounded-lg">
+<span class="text-[10px] font-bold text-neutral-400 uppercase tracking-widest">Recurring</span>
+<div class="text-xl font-bold text-neutral-900">82%</div>
+</div>
+</div>
+</div>
+<div class="md:w-2/3 h-48 relative overflow-hidden flex items-end">
+<!-- Abstract Line Chart Visualization -->
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgba(135, 206, 235, 0.2);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgba(135, 206, 235, 0);stop-opacity:1"></stop>
+</lineargradient>
+</defs>
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60 T800,40 V200 H0 Z" fill="url(#grad1)"></path>
+<path d="M0,180 Q100,160 200,140 T400,100 T600,60 T800,40" fill="none" stroke="#87CEEB" stroke-width="3"></path>
+<circle cx="800" cy="40" fill="#87CEEB" r="6"></circle>
+</svg>
+<div class="absolute right-0 top-0 bg-white shadow-xl rounded-lg p-2 border border-neutral-100 flex flex-col items-center">
+<span class="text-[10px] font-bold text-neutral-400 uppercase">Today</span>
+<span class="text-xs font-bold text-azure-accent">+8 New</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Inspo Grid (Visual Context) -->
+<div class="col-span-12 grid grid-cols-1 md:grid-cols-3 gap-gutter mt-gutter">
+<div class="gallery-tile bg-white overflow-hidden shadow-sm aspect-square relative group">
+<img class="w-full h-full object-cover signature-shadow transition-transform duration-500 group-hover:scale-105" data-alt="meticulously organized dry cleaning racks with garments in clear protective bags in a minimal high-end boutique setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ-U09R7O0bFhY68siL7W6LEZVemWso79oPRXkxwFF0caRQBSve2dtp7upfNAwO4YfkQN6WiSdQpKQqLXlr3vc5T43YLVg9X7YvB6xA2ZA3AVHo74wxKf3fbA1TIAk9qBlQUdlDnG01CRqSM42bEfwhCOL0UfR2dC0mxLYv3Wd7OyDWJuLuzpfAdvQcbQ-censr4S0DV2n47_m5qFCbkt3q9PSYr_9aR8OJyK-uB9v9661mAw1lyOGG2fVdP3Rhs4y096CT9ybFwsy"/>
+<div class="absolute bottom-6 left-6 text-black bg-white/40 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">
+                    Efficiency: 94%
+                </div>
+</div>
+<div class="gallery-tile bg-[#272729] overflow-hidden shadow-sm aspect-square relative group">
+<img class="w-full h-full object-cover opacity-60 signature-shadow transition-transform duration-500 group-hover:scale-105" data-alt="close-up of high-quality woven fabric texture on a dark background with dramatic spotlighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZXI7o7f09EsSEYtixZKqJjRnwmh81qYIuEXn2VRDgqT0lg45ODGuTvSiZt3UKpajnqXcO09XIVvO1KmDvtNor7iZNnsJdWny3_8i9-_cAgATTPQ-tx2Gr8BgMnnUE4m3coXvkQ88xKQohdlWILhyVWHtjvG4jL-5Nv5faR4j6zSHGAJoQJ4Q2w74ua1Cw3vYREnx71fSpFAVuW7F-oF7GwI_mvwTjYWTTnMHGx8gpxM8lmKYjxtIqmG4LL2LDL-ipVTuZlUhNYVEP"/>
+<div class="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+<span class="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.3em] mb-4">Fabric Integrity</span>
+<h4 class="text-headline-md font-headline-md text-white mb-2">Zero Damage Policy</h4>
+<p class="text-xs text-neutral-300 leading-relaxed">Maintaining artifact quality through obsessively clean processing methods.</p>
+</div>
+</div>
+<div class="gallery-tile bg-white overflow-hidden shadow-sm aspect-square relative group">
+<img class="w-full h-full object-cover signature-shadow transition-transform duration-500 group-hover:scale-105" data-alt="minimalist modern commercial laundry facility with stainless steel machines and stark white architectural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8R1q3DIhWM-FZ17ynRFVv-dbPcZLKRI_i-iDbFV46cocTH9bsK9hHI4z7QEHr93yHG8CHcOJIiqkaQHNFIfhVgzcQY2-bL0aZqsYBjKx7a8Vj39SbQBnO_u5te6kUEy5owX6ToDcG_Q4LNafKQU4Zb4QQSxvL5hay4e-bY1nhGT2LY8ezs34gLn44fP5fEt9twdXl9C9dXwLC-m3DrcKOCqF3lpVE8sPVWwb5y9ifw_H9hlEvZZSc5ePkyN4bDpVaMFEiRVRwQl3o"/>
+<div class="absolute bottom-6 left-6 text-neutral-900 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase">
+                    Capacity: Optimal
+                </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Feedback -->
+<div class="fixed bottom-8 left-8 bg-neutral-900 text-white px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl z-50">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+<span class="text-xs font-bold uppercase tracking-widest">System Online</span>
+<div class="h-4 w-px bg-neutral-700 mx-1"></div>
+<span class="text-xs text-neutral-400">Next sync: 2m</span>
+</div>
+</body></html>

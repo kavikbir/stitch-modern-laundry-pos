@@ -1,0 +1,97 @@
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+.animate-pulse-soft {
+  animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body-lg text-on-surface bg-background;
+  }
+}
+
+@layer utilities {
+  .signature-shadow {
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.08));
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+
+  /* Hide the entire body content */
+  body>* {
+    display: none !important;
+  }
+
+  /* Show only the printable receipt */
+  .printable-receipt {
+    display: block !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    background: white !important;
+    padding: 40px !important;
+    z-index: 99999 !important;
+    color: black !important;
+  }
+
+  /* Restore all children of receipt to natural display */
+  .printable-receipt * {
+    display: revert !important;
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Explicitly fix table elements */
+  .printable-receipt table {
+    display: table !important;
+    width: 100% !important;
+  }
+
+  .printable-receipt thead {
+    display: table-header-group !important;
+  }
+
+  .printable-receipt tbody {
+    display: table-row-group !important;
+  }
+
+  .printable-receipt tr {
+    display: table-row !important;
+  }
+
+  .printable-receipt th,
+  .printable-receipt td {
+    display: table-cell !important;
+    padding: 8px !important;
+  }
+
+  /* Explicitly fix flex containers inside receipt */
+  .printable-receipt .flex {
+    display: flex !important;
+  }
+
+  .printable-receipt .grid {
+    display: grid !important;
+  }
+
+  .printable-receipt .block {
+    display: block !important;
+  }
+
+  .printable-receipt .inline-block {
+    display: inline-block !important;
+  }
+
+  .printable-receipt span {
+    display: inline !important;
+  }
+}

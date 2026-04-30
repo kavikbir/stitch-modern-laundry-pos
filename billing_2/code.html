@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Billing - L'ARTISAN</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#87CEEB",
+                    "on-primary": "#003544",
+                    "primary-container": "#87CEEB",
+                    "on-primary-container": "#003544",
+                    "secondary": "#4d616c",
+                    "on-secondary": "#ffffff",
+                    "secondary-container": "#d0e6f2",
+                    "on-secondary-container": "#081e27",
+                    "tertiary": "#5d5b7d",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#e2dfff",
+                    "on-tertiary-container": "#191836",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-error-container": "#410002",
+                    "background": "#f8f9fa",
+                    "on-background": "#191c1e",
+                    "surface": "#f8f9fa",
+                    "on-surface": "#191c1e",
+                    "surface-variant": "#dce4e9",
+                    "on-surface-variant": "#40484c",
+                    "outline": "#70787d",
+                    "outline-variant": "#c0c8cc",
+                    "inverse-surface": "#2e3133",
+                    "inverse-on-surface": "#f0f1f3",
+                    "inverse-primary": "#82cff1",
+                    "surface-dim": "#d9dadb",
+                    "surface-bright": "#f8f9fa",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container": "#eeeff0",
+                    "surface-container-high": "#e8e9ea",
+                    "surface-container-highest": "#e2e3e4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "8px",
+                    "lg": "8px",
+                    "xl": "12px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "edge-margin": "40px",
+                    "tile-padding": "32px",
+                    "stack-md": "16px",
+                    "stack-lg": "32px",
+                    "unit": "4px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Manrope", "sans-serif"],
+                    "body-lg": ["Manrope", "sans-serif"],
+                    "display-hero": ["Manrope", "sans-serif"],
+                    "headline-lg": ["Manrope", "sans-serif"],
+                    "label-caps": ["Manrope", "sans-serif"],
+                    "headline-md": ["Manrope", "sans-serif"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                    "body-lg": ["17px", {"lineHeight": "1.5", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                    "display-hero": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .signature-shadow {
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.08));
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-lg antialiased min-h-screen flex flex-col">
+<!-- TopAppBar Global (Black) -->
+<header class="bg-neutral-950 dark:bg-black text-primary dark:text-primary font-sans tracking-tight font-light docked full-width top-0 flex justify-between items-center w-full px-8 h-12 z-50">
+<div class="text-lg font-bold tracking-[0.2em] text-white uppercase">L'ARTISAN</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Orders</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Customers</a>
+<a class="text-white font-medium border-b-2 border-primary pb-1" href="#">Billing</a>
+<a class="text-neutral-400 font-normal hover:text-white transition-colors duration-200" href="#">Reports</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-neutral-400 hover:text-white cursor-pointer" data-icon="settings">settings</span>
+</div>
+</header>
+<!-- TopAppBar Sub-nav (Checkout) -->
+<div class="bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md text-primary dark:text-primary font-sans text-sm font-medium uppercase tracking-widest docked full-width top-12 flex justify-between items-center w-full px-8 h-16 border-b border-neutral-100 dark:border-neutral-800 z-40">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="text-on-surface">Checkout: #ORD-9912</span>
+</div>
+<button class="bg-surface-container-low px-6 py-2 rounded text-on-surface text-xs font-semibold hover:bg-surface-container-high transition-colors uppercase tracking-widest">
+        Back to Orders
+    </button>
+</div>
+<!-- Progress Indicator -->
+<div class="fixed top-0 left-0 w-full h-[2px] bg-primary-container z-[60]" style="width: 75%;"></div>
+<main class="flex-grow flex flex-col md:flex-row px-edge-margin pt-32 pb-12 gap-gutter max-w-[1440px] mx-auto w-full">
+<!-- Left Column: Bill Breakdown -->
+<div class="flex-grow md:w-3/5 space-y-stack-lg">
+<div class="space-y-unit">
+<h1 class="font-headline-lg text-headline-lg text-on-background">Order Summary</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Transaction for Michael Chen • 12 Items</p>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-tile-padding space-y-stack-md shadow-sm">
+<div class="flex justify-between items-center border-b border-surface-variant pb-stack-md">
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded bg-surface-container flex items-center justify-center relative overflow-hidden">
+<img alt="Folded white shirts" class="signature-shadow w-12 h-12 object-contain" data-alt="crisp professionally folded white linen shirts stacked on a neutral high-key background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTXTHAqhi3OO9CM13kjEyKre56yKtaaoIuBSqQX2ZONESrZzio12nv7S53TqnJiSj1Ersn_f-67_9W53-dzEOvwKZ536X570R2ZzMKB9LkgoKe1Fo08oksnAbeNcX8b_yTpUVm8OCuKD_4MhvKojglCLS2jlzQO_MV9PcipG09X9rMA24k6m9P9Ke0e8YbKsPqlqF2Jmmqwts3mvBMynT_qpjc57s3aTgte3NoNI6EgSxZvTCU1IhUklDimpnp0JK4O2BdmIrUXohU"/>
+</div>
+<div>
+<p class="font-body-lg font-semibold text-on-surface">Premium Laundry</p>
+<p class="font-body-sm text-on-surface-variant">8 Shirts • Wash &amp; Press</p>
+</div>
+</div>
+<span class="font-body-lg text-on-surface">₹480.00</span>
+</div>
+<div class="flex justify-between items-center border-b border-surface-variant pb-stack-md">
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded bg-surface-container flex items-center justify-center relative overflow-hidden">
+<img alt="White duvet" class="signature-shadow w-12 h-12 object-contain" data-alt="high quality white cotton duvet cover neatly folded on a clean light gray surface with ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCl0thgfkZ1d4swRru0o7-eGkwpSFF-CBbg1DWUppX8pKIgxbaj7G1H1vUsXuax6aNA_-9B5buMFIYrgDswF9Y6-awBGT_vt5i6cnvGaRPpfI0k0a1y2SlvQchSrWfDriy4y_yv_LL8W6r6xw53kPGfZnASCGwdKzabiT4e9hAX9qb-D098ORCqAZhQnsxJxxV492ytz0Y_SKQNwrmV9mQ3mNAekm2gTbuU8uNvuKg6dhVMSeKSpzUvUxBqsU0omPc9pJvU2kF8uV_O"/>
+</div>
+<div>
+<p class="font-body-lg font-semibold text-on-surface">Dry Cleaning</p>
+<p class="font-body-sm text-on-surface-variant">2 Suits • Silk Finish</p>
+</div>
+</div>
+<span class="font-body-lg text-on-surface">₹320.00</span>
+</div>
+<div class="flex justify-between items-center pt-stack-md">
+<div class="flex gap-stack-md items-center">
+<div class="w-16 h-16 rounded bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-outline" data-icon="local_shipping" style="font-size: 32px;">local_shipping</span>
+</div>
+<div>
+<p class="font-body-lg font-semibold text-on-surface">Express Delivery</p>
+<p class="font-body-sm text-on-surface-variant">Scheduled for Today, 6:00 PM</p>
+</div>
+</div>
+<span class="font-body-lg text-on-surface">₹50.00</span>
+</div>
+</div>
+<div class="bg-neutral-900 text-white rounded-lg p-tile-padding">
+<div class="space-y-stack-sm">
+<div class="flex justify-between text-neutral-400 font-body-sm">
+<span>Subtotal</span>
+<span>₹850.00</span>
+</div>
+<div class="flex justify-between text-neutral-400 font-body-sm">
+<span>GST (Inclusive)</span>
+<span>₹0.00</span>
+</div>
+<div class="flex justify-between items-end pt-stack-sm">
+<span class="font-label-caps text-label-caps uppercase tracking-widest text-neutral-500">Total Payable</span>
+<span class="font-display-hero text-headline-lg tracking-tight">₹850.00</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Payment & Finalize -->
+<div class="md:w-2/5 flex flex-col gap-stack-lg">
+<div class="space-y-unit">
+<h2 class="font-headline-md text-headline-md text-on-background">Payment Method</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Select a secure settlement option</p>
+</div>
+<!-- Payment Chips Grid -->
+<div class="grid grid-cols-2 gap-4">
+<div class="relative group cursor-pointer bg-surface-container-low border border-outline-variant p-6 rounded-lg flex flex-col items-center gap-3 transition-all hover:bg-primary-container hover:border-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="payments">payments</span>
+<span class="font-label-caps uppercase">Cash</span>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+</div>
+<div class="relative group cursor-pointer bg-primary-container text-on-primary-container border border-primary p-6 rounded-lg flex flex-col items-center gap-3 transition-all">
+<span class="material-symbols-outlined text-3xl" data-icon="qr_code_2">qr_code_2</span>
+<span class="font-label-caps uppercase">UPI</span>
+<div class="absolute top-3 right-3">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+</div>
+<div class="relative group cursor-pointer bg-surface-container-low border border-outline-variant p-6 rounded-lg flex flex-col items-center gap-3 transition-all hover:bg-primary-container hover:border-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="credit_card">credit_card</span>
+<span class="font-label-caps uppercase">Card</span>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+</div>
+<div class="relative group cursor-pointer bg-surface-container-low border border-outline-variant p-6 rounded-lg flex flex-col items-center gap-3 transition-all hover:bg-primary-container hover:border-primary">
+<span class="material-symbols-outlined text-3xl" data-icon="history">history</span>
+<span class="font-label-caps uppercase">Pay Later</span>
+<div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1">check_circle</span>
+</div>
+</div>
+</div>
+<!-- Notes Section -->
+<div class="space-y-stack-sm pt-stack-md">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant">Internal Billing Note
+                <textarea class="w-full bg-surface-container-low border border-outline-variant rounded-lg p-4 font-body-sm focus:ring-2 focus:ring-primary focus:border-primary min-h-[100px] mt-2" placeholder="Add any specific billing instructions here..."></textarea>
+</label>
+</div>
+<!-- Primary Action -->
+<div class="mt-auto pt-stack-lg">
+<button class="w-full bg-primary text-on-primary font-bold py-6 rounded-full flex items-center justify-center gap-4 hover:opacity-90 active:scale-95 transition-all shadow-lg">
+<span>Complete &amp; Print Receipt</span>
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+</button>
+</div>
+</div>
+</main>
+<!-- SideNavBar (Order Summary Anchor) -->
+<aside class="hidden lg:flex flex-col bg-surface-container border-l border-outline-variant fixed right-0 top-28 bottom-0 w-80 p-6 overflow-y-auto">
+<div class="mb-stack-lg">
+<h3 class="text-on-surface text-base font-bold">Order Summary</h3>
+<p class="text-on-surface-variant font-body-sm">Transaction ID: #8291</p>
+</div>
+<nav class="flex flex-col gap-2">
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-sans text-xs font-semibold">Current Cart</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-sans text-xs font-semibold">Customer Details</span>
+</div>
+<div class="flex items-center gap-4 p-3 bg-white dark:bg-neutral-800 text-primary rounded shadow-sm border border-primary/20">
+<span class="material-symbols-outlined" data-icon="sell">sell</span>
+<span class="font-sans text-xs font-semibold">Pricing Adjustments</span>
+</div>
+<div class="flex items-center gap-4 p-3 text-on-surface-variant hover:bg-surface-container-high rounded cursor-pointer transition-colors">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span class="font-sans text-xs font-semibold">Notes</span>
+</div>
+</nav>
+<div class="mt-auto pt-6 space-y-4">
+<div class="bg-surface-container-high p-4 rounded">
+<div class="flex justify-between items-center mb-2">
+<span class="text-[10px] font-bold uppercase text-on-surface-variant">Tax Breakdown</span>
+<span class="text-[10px] font-bold text-on-surface">GST 18%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant leading-tight">CGST @ 9%: ₹38.25<br/>SGST @ 9%: ₹38.25</p>
+</div>
+<button class="w-full bg-primary text-on-primary font-bold py-3 rounded hover:bg-opacity-90 transition-colors uppercase tracking-widest text-xs">
+            Complete Order
+        </button>
+</div>
+</aside>
+</body></html>
