@@ -159,7 +159,9 @@ const Account = () => {
     pw.document.close();
   };
 
-  const isUnverified = !currentCustomer.is_verified;
+  // Google users are pre-verified. Check for providerData if available.
+  const isSocial = currentCustomer.providerData?.some(p => p.providerId === 'google.com');
+  const isUnverified = !currentCustomer.is_verified && !isSocial;
 
   return (
     <div className="pt-32 pb-24 px-8 md:px-16 min-h-screen bg-[#fafafc]">
