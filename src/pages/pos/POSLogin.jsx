@@ -40,10 +40,13 @@ const POSLogin = () => {
     setError('');
     setLoading(true);
     try {
+      console.log('[Auth] Google button clicked');
+      alert('Redirecting to Google... Please wait.');
       await loginWithGoogle();
-      // Navigation handled by useEffect
     } catch (err) {
-      setError(err.message || 'Google sign-in failed.');
+      console.error('[Auth] Google sign-in failed:', err);
+      setError('Google Sign-in failed: ' + err.message);
+      alert('Google Error: ' + err.message);
       setLoading(false);
     }
   };

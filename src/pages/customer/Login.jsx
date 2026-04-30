@@ -69,10 +69,12 @@ const Login = () => {
     setError('');
     setLoading(true);
     try {
+      alert('Redirecting to Google... Please wait.');
       await loginWithGoogle();
-      // Navigation handled by useEffect
     } catch (err) {
-      setError(err.message || 'Google sign-in failed. Make sure pop-ups are allowed.');
+      console.error('[Auth] Google sign-in failed:', err);
+      setError('Google Sign-in failed: ' + err.message);
+      alert('Google Error: ' + err.message);
       setLoading(false);
     }
   };
