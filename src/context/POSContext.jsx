@@ -26,20 +26,7 @@ import { isWhitelistedAdmin, hasRoleSync } from '../utils/rbac';
 const POSContext = createContext(null);
 export const usePOS = () => useContext(POSContext);
 
-export const ORDER_STATUSES = [
-  'Order Confirmed', 
-  'Picked Up', 
-  'In Cleaning', 
-  'Final Finishing', 
-  'Final Inspection', 
-  'Ready for Dispatch', 
-  'Out for Delivery', 
-  'Completed & Delivered', 
-  'Cancelled'
-];
-
-const PAGE_SIZE = 20;
-const CACHE_TTL_MS = 8000;
+const PAGE_SIZE = 10;
 
 export const POSProvider = ({ children }) => {
   const [currentCustomer, setCurrentCustomer] = useState(null);
@@ -64,6 +51,7 @@ export const POSProvider = ({ children }) => {
   const dashboardCacheRef = useRef({ data: null, lastFetched: 0 });
   const channelsRef = useRef([]);
 
+  // ─────────────────────────────────────────────────────────
   // SECTION: FIREBASE AUTH LISTENER
   // ─────────────────────────────────────────────────────────
   useEffect(() => {
@@ -74,25 +62,6 @@ export const POSProvider = ({ children }) => {
       unsubscribe();
       cleanupSubscriptions();
     };
-  }, []);
-  
-  // SECTION: GOOGLE REDIRECT HANDLER
-  useEffect(() => {
-    const handleRedirect = async () => {
-      try {
-        const result = await getRedirectResult(auth);
-        if (result?.user) {
-          console.log('[Auth] Redirect successful:', result.user.email);
-          alert('Welcome back, ' + result.user.email);
-        }
-      } catch (err) {
-        if (err.code !== 'auth/redirect-cancelled-by-user') {
-          console.error('[Auth] Redirect error:', err);
-          alert('Redirect Error: ' + err.message);
-        }
-      }
-    };
-    handleRedirect();
   }, []);
 
   async function handleAuthChange(user) {
@@ -205,11 +174,12 @@ export const POSProvider = ({ children }) => {
     return user;
   };
 
-  /** Google Sign-In — uses Redirect (More reliable on mobile/strict browsers) */
+  /** Google Sign-In — uses Popup */
   const loginWithGoogle = async () => {
     try {
-      console.log('[Auth] Attempting Google Redirect...');
-      await signInWithRedirect(auth, googleProvider);
+      console.log('[Auth] Attempting Google Popup...');
+      const result = await signInWithPopup(auth, googleProvider);
+      return result.user;
     } catch (err) {
       console.error('[Auth] Google Login Error:', err);
       alert('Login Error: ' + err.message);
@@ -319,263 +289,89 @@ export const POSProvider = ({ children }) => {
     if (!error) { setOrders(data || []); setOrdersTotal(data?.[0]?.total_count || 0); setOrdersPage(page); }
   }, []);
 
-  const fetchCustomersPage = useCallback(async (page = 1) => {
-    const from = (page - 1) * PAGE_SIZE;
-    const { data, count, error } = await supabase.from('customers')
-      .select('*', { count: 'exact' })
-      .eq('is_deleted', false)
-      .eq('role', 'customer')
-      .order('created_at', { ascending: false })
-      .range(from, from + PAGE_SIZE - 1);
+  const fetchOrderDetails = async (id) => {
+    const { data, error } = await supabase.from('orders').select('*, customers(*)').eq('id', id).maybeSingle();
+    return { data, error };
+  };
+
+  const updateOrderStatus = async (id, status) => {
+    const { data, error } = await supabase.from('orders').update({ order_status: status }).eq('id', id).select().maybeSingle();
+    return { data, error };
+  };
+
+  const createOrder = async (orderData) => {
+    const limit = await checkOrderCreationLimit(orderData.customer_id);
+    if (!limit.allowed) throw new Error(limit.reason);
+    
+    // Default status should be enum compliant
+    const finalData = {
+      ...orderData,
+      order_status: 'Order Confirmed',
+      created_at: new Date().toISOString()
+    };
+
+    const { data, error } = await supabase.from('orders').insert(finalData).select().single();
+    return { data, error };
+  };
+
+  const fetchCustomersPage = useCallback(async (page = 1, search = '') => {
+    let query = supabase.from('customers').select('*', { count: 'exact' });
+    if (search) query = query.or(`name.ilike.%${search}%,email.ilike.%${search}%`);
+    const { data, error, count } = await query.range((page-1)*PAGE_SIZE, page*PAGE_SIZE-1).order('created_at', { ascending: false });
     if (!error) { setCustomers(data || []); setCustomersTotal(count || 0); setCustomersPage(page); }
-  }, []);
-
-  const fetchOrderLogs = useCallback(async (orderId) => {
-    const { data, error } = await supabase
-      .from('order_status_logs')
-      .select('*')
-      .eq('order_id', orderId)
-      .order('created_at', { ascending: true });
-    
-    if (!error && data) {
-      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, timeline: data.map(l => ({ status: l.new_status, time: l.created_at, by: l.updated_by_name || 'System' })) } : o));
-    }
-  }, []);
-
-  const fetchOrderById = useCallback(async (id) => {
-    const { data, error } = await supabase
-      .from('orders')
-      .select('*')
-      .eq('id', id)
-      .maybeSingle();
-    
-    if (error) {
-      console.error('[POS] fetchOrderById error:', error);
-      throw error;
-    }
-    
-    if (data) {
-      setOrders(prev => {
-        const exists = prev.find(o => o.id === id);
-        if (exists) return prev.map(o => o.id === id ? { ...o, ...data } : o);
-        return [data, ...prev];
-      });
-      return data;
-    }
-    return null;
   }, []);
 
   const fetchDashboardStats = useCallback(async () => {
     const now = Date.now();
-    if (dashboardCacheRef.current.data && now - dashboardCacheRef.current.lastFetched < CACHE_TTL_MS) {
-      setDashboardStats(dashboardCacheRef.current.data); return;
+    if (dashboardCacheRef.current.data && (now - dashboardCacheRef.current.lastFetched < 30000)) {
+      setDashboardStats(dashboardCacheRef.current.data);
+      return;
     }
     const { data, error } = await supabase.rpc('get_dashboard_stats');
-    if (!error) { dashboardCacheRef.current = { data, lastFetched: now }; setDashboardStats(data); }
+    if (!error) {
+      setDashboardStats(data);
+      dashboardCacheRef.current = { data, lastFetched: now };
+    }
   }, []);
 
-  useEffect(() => {
-    if (currentAdmin) {
-      fetchDashboardStats();
-      const i = setInterval(fetchDashboardStats, CACHE_TTL_MS);
-      return () => clearInterval(i);
-    }
-  }, [currentAdmin, fetchDashboardStats]);
-
-  const createOrder = async (orderData) => {
-    // Use Firebase current user (NOT Supabase auth)
-    const user = auth.currentUser;
-    if (!user) throw new Error('Not logged in.');
-
-    const limit = checkOrderCreationLimit(user.uid);
-    if (!limit.allowed) throw new Error(limit.reason);
-
-    const order = {
-      ...orderData,
-      customer_id: user.uid,
-      status: 'Order Confirmed',
-      payment_status: 'Pending',
-      created_at: new Date().toISOString(),
-    };
-    console.log('[POS] Creating order:', order);
-    return await withRetry(async () => {
-      const { data, error } = await supabase.from('orders').insert(order).select().single();
-      if (error) throw error;
-      await Logger.createOrder(data.id, order).catch(() => {});
-      return data;
-    });
-  };
-
-  const updateOrderStatus = async (orderId, newStatus, updatedByName = '') => {
-    // 1. Ensure we have the target order data
-    let order = orders.find(o => o.id === orderId);
-    if (!order) order = await fetchOrderById(orderId);
-    
-    return await withRetry(async () => {
-      // 2. Perform the update (use maybeSingle to avoid 406/PGRST116 errors)
-      const { data, error } = await supabase
-        .from('orders')
-        .update({ status: newStatus })
-        .eq('id', orderId)
-        .select()
-        .maybeSingle();
-
-      if (error) throw error;
-      if (!data) throw new Error('Order record not found in database.');
-      
-      // 3. Optimistic Update
-      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, ...data } : o));
-
-      // 4. Record the log entry (best effort)
-      await supabase.from('order_status_logs').insert({
-        order_id: orderId,
-        old_status: order?.status || 'Unknown',
-        new_status: newStatus,
-        updated_by: currentAdmin?.id,
-        updated_by_name: updatedByName || currentAdmin?.name || 'Admin',
-      }).catch(err => console.warn('[POS] Log failed:', err));
-
-      await Logger.updateOrderStatus(orderId, order?.status, newStatus).catch(() => {});
-      return data;
-    });
-  };
-
-  const recordPayment = async (orderId, method) => {
-    const order = orders.find(o => o.id === orderId);
-    if (!order) {
-      // If not in cache, try fetching first (for direct navigation)
-      const freshOrder = await fetchOrderById(orderId);
-      if (!freshOrder) throw new Error('Order not found');
-    }
-    
-    const targetOrder = order || orders.find(o => o.id === orderId);
-
-    const payData = {
-      order_id: orderId,
-      customer_id: targetOrder.customer_id,
-      amount: targetOrder.total,
-      method: method,
-      status: 'Completed',
-      created_at: new Date().toISOString()
-    };
-
-    return await withRetry(async () => {
-      const data = await safeSupabaseOp(() =>
-        supabase.from('payments').insert(payData).select().single(),
-        'Record Payment'
-      );
-
-      // Update local order state to reflected Paid status
-      setOrders(prev => prev.map(o => o.id === orderId ? { ...o, payment_status: 'Paid', payment_method: method } : o));
-      
-      await Logger.recordPayment(payData.order_id, payData.amount, payData.method).catch(() => {});
-      return data;
-    });
-  };
-
-  const addCustomer = async (custData) => {
-    const newId = 'MAN-' + Math.random().toString(36).substr(2, 9);
-    const customer = {
-      ...custData,
-      id: newId,
-      role: 'customer',
-      created_at: new Date().toISOString()
-    };
-    const { data, error } = await supabase.from('customers').insert(customer).select().single();
-    if (error) throw error;
-    setCustomers(prev => [data, ...prev]);
-    return data;
-  };
-
-  const updateCustomer = async (customerId, updatedData) => {
-    const { data, error } = await supabase.from('customers').update(updatedData).eq('id', customerId).select().single();
-    if (error) throw error;
-    setCustomers(prev => prev.map(c => c.id === customerId ? data : c));
-    return data;
-  };
-
   const updateSettings = async (newSettings) => {
-    await safeSupabaseOp(() => supabase.from('settings').update(newSettings).eq('id', 1), 'Update Settings');
-    setSettings(newSettings);
-    addNotification('Settings Saved', 'System configurations updated.');
+    // Local state update first
+    setSettings(prev => ({ ...prev, ...newSettings }));
+    // Future: sync to DB
+    return { success: true };
   };
 
-  const addNotification = (title, message, type = 'info') => {
-    setNotificationBell(prev => [{ id: Date.now(), title, message, type, is_read: false }, ...prev.slice(0, 19)]);
-  };
-
-  const markNotificationRead = async (id) => {
-    setNotificationBell(prev => prev.map(n => n.id === id ? { ...n, is_read: true } : n));
-    if (typeof id === 'string') await supabase.from('notifications').update({ is_read: true }).eq('id', id);
-  };
-
-  const seedTestData = async () => {
-    addNotification('Seed Started', 'Generating realistic test data...', 'info');
-    
-    try {
-      // 1. Generate Dummy Customers
-      const dummyCusts = Array.from({ length: 15 }).map((_, i) => ({
-        id: 'SEED-CUST-' + Math.random().toString(36).substr(2, 9),
-        name: ['Rajesh Kumar', 'Anita Singh', 'Kritagya K.', 'Priya Sharma', 'Amit Patel', 'Sneha Reddy', 'Vikram Rao', 'Sonia Gupta'][i % 8] + ' ' + (i + 1),
-        phone: '98765' + Math.floor(10000 + Math.random() * 90000),
-        email: `testuser${i}@example.com`,
-        role: 'customer',
-        created_at: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toISOString()
-      }));
-
-      await supabase.from('customers').insert(dummyCusts);
-
-      // 2. Generate Dummy Orders
-      const statuses = [
-        'Order Confirmed', 
-        'Pickup Completed', 
-        'Cleaning & Care', 
-        'Expert Pressing', 
-        'Final Inspection', 
-        'Ready for Delivery', 
-        'Dispatched', 
-        'Order Delivered'
-      ];
-      const dummyOrders = Array.from({ length: 30 }).map((_, i) => {
-        const cust = dummyCusts[Math.floor(Math.random() * dummyCusts.length)];
-        const orderDate = new Date(Date.now() - Math.random() * 10 * 24 * 60 * 60 * 1000);
-        return {
-          customer_id: cust.id,
-          customer_name: cust.name,
-          customer_phone: cust.phone,
-          status: statuses[Math.floor(Math.random() * statuses.length)],
-          payment_status: Math.random() > 0.3 ? 'Paid' : 'Pending',
-          total: Math.floor(200 + Math.random() * 1500),
-          items: [{ service: 'Wash & Fold', quantity: 2, weight: 5 }],
-          created_at: orderDate.toISOString()
-        };
-      });
-
-      await supabase.from('orders').insert(dummyOrders);
-      
-      addNotification('Seed Success', '30 test orders and 15 customers added!', 'success');
-      fetchOrdersPage(1);
-      fetchCustomersPage(1);
-      fetchDashboardStats();
-    } catch (err) {
-      console.error('[Seed] Error:', err);
-      addNotification('Seed Failed', err.message, 'error');
-    }
-  };
-
-  // ─────────────────────────────────────────────────────────
-  // SECTION: Context Value
-  // ─────────────────────────────────────────────────────────
   const value = {
-    currentCustomer, currentAdmin, userRole, authLoading,
-    orders, customers, notifications: notificationBell, settings, stats: dashboardStats,
-    ordersPage, ordersTotal, customersPage, customersTotal, pageSize: PAGE_SIZE,
-    fetchOrdersPage, fetchCustomersPage,
-    loginCustomerEmail, registerCustomer, loginWithGoogle, loginWithPhone, verifyOtp,
-    loginAdmin, logoutAdmin, logoutCustomer,
-    createOrder, updateOrderStatus, recordPayment, processPayment: recordPayment, updateSettings,
-    addCustomer, updateCustomer,
-    addNotification, markNotificationRead, seedTestData, fetchDashboardStats, fetchOrderLogs, fetchCustomerOrders, fetchOrderById
+    currentCustomer,
+    currentAdmin,
+    userRole,
+    authLoading,
+    orders,
+    customers,
+    notifications,
+    settings,
+    ordersPage,
+    ordersTotal,
+    customersPage,
+    customersTotal,
+    dashboardStats,
+    notificationBell,
+    loginCustomerEmail,
+    registerCustomer,
+    loginWithGoogle,
+    loginWithPhone,
+    verifyOtp,
+    loginAdmin,
+    logoutCustomer,
+    logoutAdmin,
+    fetchCustomerOrders,
+    fetchOrdersPage,
+    fetchOrderDetails,
+    updateOrderStatus,
+    createOrder,
+    fetchCustomersPage,
+    fetchDashboardStats,
+    updateSettings,
   };
 
   return <POSContext.Provider value={value}>{children}</POSContext.Provider>;
